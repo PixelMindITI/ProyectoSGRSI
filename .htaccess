@@ -1,0 +1,26 @@
+# SGRSI — PixelMind · Apache
+# Objetivos:
+#   1) Que http://localhost/SGRSI/ sirva la aplicación (public/)
+#   2) Proteger las capas internas del acceso web directo
+# Nota: cada carpeta interna además tiene su propio .htaccess "Require all denied".
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # La raíz del proyecto abre el login directamente
+    RewriteRule ^$ public/index.php [END]
+
+    # Si la petición resuelve a un archivo o carpeta real, pasa tal cual
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [END]
+
+    # Resto de rutas: servirlas desde public/ (evitando doble prefijo)
+    RewriteCond %{REQUEST_URI} !/public/
+    RewriteRule ^(.+)$ public/$1 [END]
+</IfModule>
+
+# Red de seguridad adicional contra descarga de código/SQL por URL
+RedirectMatch 403 ^/SGRSI/(config|core|app|database)/.*$

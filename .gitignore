@@ -1,0 +1,12 @@
+# Credenciales reales: NUNCA se versionan (requisito de seguridad)
+config/config.php
+
+# Registros y temporales
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Entorno de desarrollo
+.idea/
+.vscode/

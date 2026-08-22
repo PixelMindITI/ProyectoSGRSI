@@ -1,0 +1,3 @@
+# Bloquea el acceso web directo a la capa de datos y configuración.
+# La única puerta de entrada es /public/.
+Require all denied

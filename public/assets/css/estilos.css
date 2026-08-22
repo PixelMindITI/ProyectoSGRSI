@@ -1,0 +1,84 @@
+/* =====================================================================
+   SGRSI — PixelMind · Hoja de estilos propia sobre Bootstrap 5
+   Enfoque MOBILE FIRST: los estilos base apuntan a teléfonos (<576px)
+   y se amplían progresivamente con media queries (576 / 768 / 992 /
+   1200+ para monitores, exigido en la segunda entrega).
+   ===================================================================== */
+
+:root {
+    --pm-azul: #0d3b66;
+    --pm-azul-claro: #1d5a96;
+    --pm-gris-fondo: #f4f6f9;
+}
+
+body {
+    background-color: var(--pm-gris-fondo);
+    font-size: .95rem;
+}
+
+/* --- Marca de la empresa en el navbar y login --- */
+.brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--pm-azul-claro), var(--pm-azul));
+    color: #fff;
+    font-weight: 700;
+    font-size: .85rem;
+    letter-spacing: .5px;
+}
+.brand-mark-lg {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    font-size: 1.5rem;
+}
+
+/* --- Tarjetas de métricas del dashboard --- */
+.metric-card { transition: transform .15s ease; }
+.metric-card:hover { transform: translateY(-3px); }
+.metric-card .h3 { line-height: 1; }
+
+/* --- Tablas: en móvil se leen mejor sin bordes laterales --- */
+.table > :not(caption) > * > * { padding: .65rem .75rem; }
+
+/* --- Formularios: feedback visual --- */
+.form-label { font-weight: 600; color: #374151; }
+.invalid-feedback { display: block; } /* visible junto a is-invalid */
+
+/* --- Footer institucional --- */
+.footer-app { margin-top: auto; }
+
+/* Sticky footer simple */
+body { min-height: 100vh; display: flex; flex-direction: column; }
+main { flex: 1 0 auto; }
+
+/* =====================  TABLET ≥ 768px  ===================== */
+@media (min-width: 768px) {
+    body { font-size: 1rem; }
+    .detalle-lista dt { color: #6c757d; font-weight: 600; }
+}
+
+/* =====================  MONITOR ≥ 1024px (exigido)  ========= */
+@media (min-width: 1024px) {
+    /* Aprovechamos el ancho: contenido más centrado y respirado */
+    main.container-fluid { max-width: 1400px; margin-inline: auto; }
+    .metric-card:hover { transform: translateY(-5px); }
+    /* El navbar gana sombra al pasar a escritorio */
+    .navbar { box-shadow: 0 2px 10px rgba(13,59,102,.25); }
+}
+
+/* =====================  MONITOR GRANDE ≥ 1400px  ============ */
+@media (min-width: 1400px) {
+    body { font-size: 1.05rem; }
+    .table > :not(caption) > * > * { padding: .8rem 1rem; }
+}
+
+/* Impresión limpia de fichas (opcional para soporte) */
+@media print {
+    .navbar, .btn, footer { display: none !important; }
+    body { background: #fff; }
+}

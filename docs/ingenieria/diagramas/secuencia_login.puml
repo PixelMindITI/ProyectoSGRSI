@@ -1,0 +1,32 @@
+@startuml secuencia_login
+' Diagrama de SECUENCIA - Autenticación (arquitectura de 3 capas real)
+skinparam shadowing false
+actor Solicitante as A
+participant "index.php\n(vista/controlador)" as V
+participant "UsuarioServicio" as S
+participant "UsuarioRepositorio" as R
+participant "MySQL sgrsi" as BD
+
+A -> V : ingresa email + contraseña
+activate V
+V -> V : Validador::email(), requerido()
+V -> S : autenticar(email, password)
+activate S
+S -> R : buscarPorEmail(email)
+activate R
+R -> BD : SELECT ... WHERE email = ?\n(sentencia preparada)
+BD --> R : fila usuario | null
+R --> S : Usuario | null
+S -> S : password_verify()\n(hash bcrypt, tiempo constante)
+alt credenciales válidas
+  S -> S : Sesion::autenticar(id, rol)\nsession_regenerate_id(true)
+  S --> V : true
+  V --> A : redirect 303 → dashboard.php
+else credenciales inválidas
+  S -> S : verifica hash ficticio\n(anti enumeración de usuarios)
+  S --> V : false
+  V --> A : 200 + "Credenciales incorrectas"
+end
+deactivate S
+deactivate V
+@enduml

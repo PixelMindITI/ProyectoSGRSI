@@ -1,0 +1,17 @@
+@startuml estado_equipo
+' Diagrama de ESTADOS - Equipo
+skinparam shadowing false
+[*] --> Disponible : alta en inventario
+Disponible --> Prestado : se registra préstamo
+Prestado --> Disponible : devolución
+Disponible --> EnMantenimiento : envío a reparación
+EnMantenimiento --> Disponible : reparación finalizada
+Disponible --> Baja : fin de vida útil / daño total\n(cierra asignación activa)
+Prestado --> EnMantenimiento : falla detectada al recibir
+Baja --> [*]
+
+Disponible : equipos disponibles para préstamo/asignación
+Prestado : con préstamo activo o técnico asignado
+EnMantenimiento : en reparación interna o externa
+Baja : fuera de servicio, conserva historial (trazabilidad)
+@enduml

@@ -1,0 +1,14 @@
+@startuml estado_prestamo
+' Diagrama de ESTADOS - Préstamo de equipo
+skinparam shadowing false
+[*] --> Activo : técnico entrega equipo\n(fecha límite establecida)
+Activo --> Devuelto : registro de devolución\n(se libera el equipo)
+Devuelto --> [*]
+Activo --> Vencido : fecha límite vencida\n(evento temporal)
+Vencido --> Devuelto : devolución tardía\n(notifica al administrador)
+Vencido --> [*] : [si nunca se devuelve]\nqueda registrado como pérdida
+
+Activo : equipo en poder del usuario
+Vencido : alerta para soporte (consulta por fecha_limite < hoy)
+Devuelto : histórico para auditoría
+@enduml

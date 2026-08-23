@@ -1,0 +1,15 @@
+@startuml estado_solicitud
+' Diagrama de ESTADOS - Solicitud de servicio
+skinparam shadowing false
+[*] --> Pendiente : solicitante crea solicitud\n(tipo, prioridad implícita, fecha de necesidad)
+Pendiente --> EnProceso : soporte toma la solicitud
+Pendiente --> Rechazada : no es viable\n(respuesta obligatoria)
+EnProceso --> Completada : servicio brindado\n(respuesta + fecha de cierre)
+Rechazada --> [*]
+Completada --> [*]
+
+Pendiente : en cola de trabajo del área de soporte
+EnProceso : siendo gestionada por un técnico/administrador
+Completada : cerrada satisfactoriamente
+Rechazada : cerrada con justificación al solicitante
+@enduml

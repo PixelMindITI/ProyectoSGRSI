@@ -1,0 +1,113 @@
+@startuml clases
+' Diagrama de CLASES (opcional) - refleja la implementación real en PHP
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+hide empty members
+
+package "Entidades del dominio" {
+  class Usuario {
+    +id : int
+    +nombre : string
+    +email : string
+    +passwordHash : string
+    +rolId : int
+    +activo : bool
+    +verificarPassword(claro : string) : bool
+    +setPassword(claro : string) : void
+  }
+  class Equipo {
+    +id : int
+    +codigo : string
+    +numeroSerie : string
+    +tipoId : int
+    +marca : string
+    +modelo : string
+    +estadoId : int
+    +observaciones : string
+  }
+  class Ticket {
+    +id : int
+    +creadorId : int
+    +equipoId : int | null
+    +titulo : string
+    +descripcion : string
+    +prioridadId : int
+    +estadoId : int
+    +asignadoA : int | null
+    +notaResolucion : string
+  }
+  class Prestamo {
+    +id : int
+    +equipoId : int
+    +usuarioId : int
+    +fechaPrestamo : date
+    +fechaLimite : date
+    +fechaDevolucion : date | null
+    +estaVencido() : bool
+  }
+  class Solicitud {
+    +id : int
+    +solicitanteId : int
+    +tipoId : int
+    +titulo : string
+    +laboratorio : string
+    +fechaNecesidad : date
+    +estadoId : int
+    +respuesta : string
+    +atendidaPor : int | null
+  }
+}
+
+package "Capa de negocio (Servicios)" {
+  class UsuarioServicio
+  class EquipoServicio
+  class TicketServicio
+  class PrestamoServicio
+  class SolicitudesServicio
+}
+
+package "Capa de acceso a datos" {
+  class RepositorioBase <<abstract>> {
+    #ejecutar(sql, tipos, params) : bool
+    #filas(sql, tipos, params) : array
+    #fila(sql, tipos, params) : ?array
+    #escalar(sql) : mixed
+    #modificar(sql, tipos, params) : int
+  }
+  class UsuarioRepositorio
+  class EquipoRepositorio
+  class TicketRepositorio
+  class PrestamoRepositorio
+  class SolicitudRepositorio
+  class CatalogoRepositorio
+}
+
+class Database <<Singleton>> {
+  -conexion : mysqli {static}
+  +obtener() : mysqli {static}
+  -cargarConfiguracion() : array
+}
+
+UsuarioServicio --> UsuarioRepositorio
+EquipoServicio --> EquipoRepositorio
+TicketServicio --> TicketRepositorio
+PrestamoServicio --> PrestamoRepositorio
+SolicitudesServicio --> SolicitudRepositorio
+
+UsuarioRepositorio --|> RepositorioBase
+EquipoRepositorio --|> RepositorioBase
+TicketRepositorio --|> RepositorioBase
+PrestamoRepositorio --|> RepositorioBase
+SolicitudRepositorio --|> RepositorioBase
+CatalogoRepositorio --|> RepositorioBase
+
+RepositorioBase --> Database : usa
+Database --> "MySQL\n(sgrsi)"
+
+Usuario "1" --> "*" Ticket : crea
+Usuario "1" --> "*" Solicitud : crea
+Usuario "0..1" <-- "*" Ticket : asignado a
+Equipo "1" --> "*" Ticket : afecta
+Equipo "1" --> "*" Prestamo : se presta en
+Equipo "1" --> "*" Solicitud : contexto
+@enduml

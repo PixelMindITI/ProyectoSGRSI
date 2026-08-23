@@ -1,0 +1,62 @@
+@startuml casos_uso
+' Diagrama de CASOS DE USO - SGRSI PixelMind (2a entrega IS)
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam actorStyle awesome
+
+actor "Solicitante\n(Docente / Estudiante)" as Sol
+actor "Técnico de Soporte" as Tec
+actor "Administrador" as Adm
+
+rectangle "SGRSI - Sistema de Gestión de Recursos y Soporte" {
+  usecase "Registrarse" as UC1
+  usecase "Autenticarse" as UC2
+  usecase "Cerrar sesión" as UC3
+  usecase "Cambiar idioma\n(ES/EN)" as UC4
+
+  usecase "Reportar incidencia\n(ticket)" as UC10
+  usecase "Consultar estado\nde sus pedidos" as UC11
+  usecase "Crear solicitud\nde servicio" as UC12
+
+  usecase "Gestionar equipos\n(alta / edición)" as UC20
+  usecase "Cambiar estado\nde equipo" as UC21
+  usecase "Asignar equipo\na técnico" as UC22
+  usecase "Registrar préstamo" as UC23
+  usecase "Registrar devolución" as UC24
+  usecase "Atender incidencia" as UC25
+
+  usecase "Atender solicitud\nde servicio" as UC30
+  usecase "Gestionar usuarios" as UC31
+  usecase "Visualizar métricas\ndel dashboard" as UC32
+}
+
+Sol --> UC1
+Sol --> UC2
+Sol --> UC3
+Sol --> UC4
+Sol --> UC10
+Sol --> UC11
+Sol --> UC12
+
+Tec --> UC2
+Tec --> UC3
+Tec --> UC20
+Tec --> UC21
+Tec --> UC22
+Tec --> UC23
+Tec --> UC24
+Tec --> UC25
+
+Adm --> UC2
+Adm --> UC3
+Adm --> UC31
+Adm --> UC30
+Adm --> UC32
+
+UC20 ..> UC2 : <<include>>
+UC25 ..> UC2 : <<include>>
+UC31 ..> UC2 : <<include>>
+UC12 .> UC1 : <<extend>>\nsi no tiene cuenta
+UC25 <.. UC11 : <<extend>>\nnotifica al solicitante
+@enduml

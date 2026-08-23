@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PixelMind · ITI 2026 · Ingeniería de Software — Segunda Entrega</title>
+<style>
+    :root { --azul:#0d3b66; --azul2:#1d5a96; --gris:#f4f6f9; --borde:#d7dde5; }
+    * { box-sizing: border-box; }
+    body { font-family:'Segoe UI', Arial, sans-serif; color:#222; margin:0; background:#fff; font-size:14px; line-height:1.55; }
+    .pagina { max-width:900px; margin:0 auto; padding:32px 40px; }
+
+    .portada { height:96vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; page-break-after:always; }
+    .portada .marca { width:84px;height:84px;border-radius:18px;background:linear-gradient(135deg,var(--azul2),var(--azul));color:#fff;font-size:30px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:24px;letter-spacing:1px;}
+    .portada h1 { color:var(--azul); font-size:34px; margin:0 0 6px; }
+    .portada h2 { color:#555; font-weight:400; font-size:19px; margin:0 0 34px;}
+    .portada .datos { border-top:3px solid var(--azul); padding-top:22px; font-size:16px; }
+    .portada .datos b { color:var(--azul); }
+
+    h1.titulo-seccion { color:var(--azul); border-bottom:3px solid var(--azul); padding-bottom:6px; font-size:23px; margin-top:0; page-break-after:avoid;}
+    section { page-break-before:always; }
+    h2 { color:var(--azul2); font-size:17px; margin:26px 0 8px; page-break-after:avoid;}
+    h3 { font-size:15px; margin:20px 0 6px; color:#333; page-break-after:avoid;}
+
+    table { border-collapse:collapse; width:100%; margin:12px 0; font-size:13px; }
+    th { background:var(--azul); color:#fff; text-align:left; padding:7px 9px; }
+    td { border:1px solid var(--borde); padding:6px 9px; vertical-align:top;}
+    tr:nth-child(even) td { background:var(--gris); }
+
+    figure { margin:14px 0; text-align:center; page-break-inside:avoid; }
+    figure img { max-width:100%; max-height:520px; border:1px solid var(--borde); border-radius:6px; padding:10px; background:#fff;}
+    figcaption { font-size:12px; color:#666; margin-top:6px; font-style:italic; }
+
+    .nota { background:#eef4fb; border-left:4px solid var(--azul2); padding:10px 14px; margin:12px 0; border-radius:0 6px 6px 0;}
+    code { background:#eef1f4; padding:1px 5px; border-radius:3px; font-family:Consolas,monospace; font-size:12.5px; }
+
+    .gantt td { padding:4px 6px; font-size:12px;}
+    .gantt .barra { height:14px; border-radius:7px; min-width:8px;}
+    .gantt .hecho { background:#2e9e5b;} .gantt .curso { background:#e0a800;} .gantt .pend {background:#b9c4d0;}
+
+    ul { margin:8px 0; } li{ margin:3px 0;}
+
+    @media print {
+        body { font-size:12.5px; }
+        .pagina { padding:10mm 12mm; max-width:none; }
+        @page { size:A4; margin:12mm; }
+        section { page-break-before: always; }
+    }
+</style>
+</head>
+<body>
+
+<!-- ==================== PORTADA ==================== -->
+<div class="portada pagina">
+    <div class="marca">PM</div>
+    <h1>SGRSI</h1>
+    <h2>Sistema de Gestión de Recursos y Soporte de Informática</h2>
+    <div class="datos">
+        <p><b>Ingeniería de Software · Segunda Entrega — Diseño y métricas</b></p>
+        <p>Grupo <b>PixelMind</b> · ITI 2026</p>
+        <p>Integrantes: ____________________ · ____________________ · ____________________</p>
+        <p>Docente: ____________________ &nbsp;|&nbsp; Fecha: ____/____/______</p>
+    </div>
+</div>
+
+<!-- ==================== ÍNDICE ==================== -->
+<section class="pagina">
+<h1 class="titulo-seccion">Índice</h1>
+<table>
+<tr><th style="width:70px">Sección</th><th>Contenido</th></tr>
+<tr><td>1.</td><td>Validación metodológica — revisión del modelo de desarrollo elegido</td></tr>
+<tr><td>2.</td><td>Modelo Esencial — modelo ambiental, lista de acontecimientos y modelo de comportamiento</td></tr>
+<tr><td>3.</td><td>Diseño UML — casos de uso con planillas, diagrama de clases y diagramas de estados</td></tr>
+<tr><td>4.</td><td>Diagrama de paquetes — organización arquitectónica</td></tr>
+<tr><td>5.</td><td>Gestión de riesgos — identificación y plan de contingencia</td></tr>
+<tr><td>6.</td><td>Seguimiento de la planificación — cronograma (Gantt) de la segunda entrega</td></tr>
+<tr><td>7.</td><td>Avance del producto — guion del video demostrativo (2 minutos)</td></tr>
+<tr><td>8.</td><td>Sincronización — estado del repositorio Git</td></tr>
+</table>
+</section>
+
+<!-- ==================== 1. VALIDACIÓN METODOLÓGICA ==================== -->
+<section class="pagina">
+<h1 class="titulo-seccion">1 · Validación metodológica</h1>
+
+<h2>1.1 Recordatorio: decisión original (primera entrega)</h2>
+<p>En la primera entrega PixelMind eligió el <b>modelo de desarrollo incremental</b>: el producto se construye en incrementos funcionales que aportan valor temprano al cliente, intercalando especificación, diseño e implementación en cada ciclo, como describe Sommerville (2011). Cada entrega académica de la letra coincide con un incremento del sistema.</p>
+
+<h2>1.2 Criterios de validación aplicados</h2>
+<p>Revisamos si el modelo <i>sigue siendo adecuado</i> contrastando la realidad del proyecto contra los criterios habituales de selección de proceso (Sommerville, caps. 2 y 22):</p>
+<table>
+<tr><th>Criterio</th><th>Situación real del proyecto</th><th>¿Sigue favoreciendo al incremental?</th></tr>
+<tr><td>Estabilidad de requisitos</td><td>La letra fija requisitos por entregas; hubo ajustes menores de alcance entre entregas.</td><td><b>Sí.</b> El incremental absorbe cambios redefiniendo el próximo incremento sin descartar trabajo previo.</td></tr>
+<tr><td>Necesidad de entregas tempranas</td><td>El docente evalúa avances parciales; el cliente necesita ver funcionalidad pronto.</td><td><b>Sí.</b> Cada incremento entrega software operativo (login, inventario, tickets…).</td></tr>
+<tr><td>Tamaño y madurez del equipo</td><td>Equipo pequeño (3 integrantes), sin experiencia en procesos pesados.</td><td><b>Sí.</b> Evita la burocracia de cascada puro o RUP completo.</td></tr>
+<tr><td>Riesgo técnico</td><td>Bajo-moderado: stack conocido (PHP + MySQL + Bootstrap); complejidad en seguridad y alcance.</td><td><b>Sí.</b> Riesgos gestionados por incremento (sección 5).</td></tr>
+<tr><td>Trazabilidad y calidad</td><td>Apareció necesidad de mayor formalidad: UML, planillas, métricas.</td><td><b>Sí, con ajuste:</b> artefactos de diseño por incremento (ver 1.3).</td></tr>
+<tr><td>Evolución de la arquitectura</td><td>Riesgo clásico del incremental: degradar la estructura acumulando incrementos.</td><td><b>Mitigado:</b> arquitectura de 3 capas estable desde el inicio (sección 4).</td></tr>
+</table>
+
+<h2>1.3 Conclusión de la revisión</h2>
+<div class="nota"><b>El modelo incremental sigue siendo el adecuado</b>, por lo que NO se reemplaza. De esta validación surgen tres mejoras de proceso para este incremento:
+<ul>
+<li><b>Formalización del diseño:</b> cada incremento incluye ahora sus diagramas UML actualizados (este documento) antes de codificar los módulos nuevos.</li>
+<li><b>Gestión explícita de riesgos:</b> registro vivo con revisión al inicio de cada incremento (sección 5).</li>
+<li><b>Seguimiento cuantitativo:</b> Gantt con % de avance por actividad para detectar desvíos a tiempo (sección 6).</li>
+</ul></div>
+<p><b>Incrementos planificados vs. entregas académicas:</b> Incremento 1 = relevamiento y planificación (1ª entrega) · Incremento 2 = núcleo del sistema + diseño (esta entrega: autenticación RBAC, inventario, tickets, préstamos, solicitudes y usuarios operativos) · Incremento 3 = calidad, testing, métricas y manuales (3ª entrega).</p>
+</section>
+
+<!-- ==================== 2. MODELO ESENCIAL ==================== -->
+<section class="pagina">
+<h1 class="titulo-seccion">2 · Modelo Esencial</h1>
+<p>El modelo esencial describe <i>qué hace</i> el sistema con independencia de la tecnología: qué fenómenos del entorno debe observar y a qué debe responder. Se compone del <b>modelo ambiental</b>, la <b>lista de acontecimientos</b> y el <b>modelo de comportamiento</b>.</p>
+
+<h2>2.1 Modelo ambiental</h2>
+<table>
+<tr><th style="width:210px">Elemento</th><th>Descripción</th></tr>
+<tr><td><b>Propósito del sistema</b></td><td>Gestionar el inventario de equipos informáticos, los préstamos, las incidencias técnicas y las solicitudes de servicio del ITI, centralizando información que hoy se dispersa en planillas y pedidos verbales.</td></tr>
+<tr><td><b>Frontera del sistema</b></td><td>Todo lo que ocurre dentro del navegador/servidor SGRSI. Queda FUERA: la reparación física de equipos, la compra de insumos y la gestión académica (notas, asistencia).</td></tr>
+<tr><td><b>Solicitantes<br>(docentes/estudiantes)</b></td><td>Reportan incidencias, piden préstamos de equipos y solicitan servicios (laboratorios, instalaciones, software). Consultan el estado de sus pedidos.</td></tr>
+<tr><td><b>Técnicos de soporte</b></td><td>Administrar inventario, asignar equipos, registrar préstamos/devoluciones, atender tickets e intervenciones.</td></tr>
+<tr><td><b>Administrador</b></td><td>Además de lo técnico: gestiona usuarios y roles, atiende solicitudes de servicio y monitorea métricas del dashboard.</td></tr>
+<tr><td><b>Eventos temporales</b></td><td>El paso del tiempo dispara respuestas: vencimiento de préstamos (estado vencido) y cálculo de métricas por fecha.</td></tr>
+<tr><td><b>Restricciones</b></td><td>Entorno XAMPP (Apache + MySQL), acceso web local institucional, interfaz en español e inglés, seguridad exigida (RBAC, bcrypt, validaciones server-side).</td></tr>
+</table>
+
+<h2>2.2 Lista de acontecimientos</h2>
+<p>Acontecimientos externos y temporales a los que el sistema debe responder:</p>
+<table>
+<tr><th>#</th><th style="width:90px">Tipo</th><th>Acontecimiento</th><th>Respuesta del sistema</th></tr>
+<tr><td>A1</td><td>Externo</td><td>Un usuario ingresa sus credenciales.</td><td>Valida contra hash bcrypt, abre sesión con rol correspondiente o rechaza con mensaje genérico.</td></tr>
+<tr><td>A2</td><td>Externo</td><td>Una persona se registra por primera vez.</td><td>Crea cuenta con rol <i>solicitante</i>, valida email único y contraseña segura.</td></tr>
+<tr><td>A3</td><td>Externo</td><td>Soporte da de alta un equipo en inventario.</td><td>Genera código, registra tipo/marca/modelo/serie, estado inicial «disponible».</td></tr>
+<tr><td>A4</td><td>Externo</td><td>Soporte cambia el estado de un equipo (mantenimiento/baja).</td><td>Actualiza estado; si es baja, cierra la asignación activa (trazabilidad).</td></tr>
+<tr><td>A5</td><td>Externo</td><td>Se solicita el préstamo de un equipo.</td><td>Verifica disponibilidad, crea préstamo activo con fecha límite y marca equipo «prestado».</td></tr>
+<tr><td>A6</td><td>Temporal</td><td>Vence la fecha límite de un préstamo.</td><td>El préstamo pasa a «vencido» y queda visible como alerta para soporte.</td></tr>
+<tr><td>A7</td><td>Externo</td><td>El solicitante reporta una incidencia.</td><td>Crea ticket pendiente con prioridad y lo deja en cola visible para soporte.</td></tr>
+<tr><td>A8</td><td>Externo</td><td>Soporte toma y trabaja una incidencia.</td><td>Pasa a «en proceso», asigna técnico y registra intervenciones con historial.</td></tr>
+<tr><td>A9</td><td>Externo</td><td>La incidencia queda resuelta.</td><td>Exige nota de resolución, cierra el ticket y registra fecha/hora.</td></tr>
+<tr><td>A10</td><td>Externo</td><td>Se recibe una solicitud de servicio.</td><td>Crea solicitud pendiente con tipo, laboratorio y fecha de necesidad.</td></tr>
+<tr><td>A11</td><td>Externo</td><td>Soporte/administrador atiende la solicitud.</td><td>Pasa a «en proceso» y al finalizar registra respuesta obligatoria y cierre.</td></tr>
+<tr><td>A12</td><td>Externo</td><td>El administrador gestiona un usuario.</td><td>Alta/edición de usuarios y roles; desactivación sin borrar historial.</td></tr>
+<tr><td>A13</td><td>Externo</td><td>El usuario cierra sesión o expira la inactividad.</td><td>Destruye la sesión y redirige al login.</td></tr>
+</table>
+
+<h2>2.3 Modelo de comportamiento</h2>
+<p>El comportamiento del sistema se modela con <b>diagramas de secuencia</b> (interacciones actor-sistema por capa) y <b>diagramas de estados</b> (ciclo de vida de los objetos clave, sección 3.4).</p>
+
+<figure><img src="diagramas/secuencia_login.svg" alt="Secuencia de login" style="max-height:430px">
+<figcaption>Fig. 2.1 — Secuencia: autenticación de usuario (muestra las 3 capas: vista, servicio, repositorio, BD).</figcaption></figure>
+
+<figure><img src="diagramas/secuencia_prestamo.svg" alt="Secuencia préstamo" style="max-height:480px">
+<figcaption>Fig. 2.2 — Secuencia: registro de préstamo con verificación de disponibilidad y su devolución posterior.</figcaption></figure>
+</section>
+
+<!-- ==================== 3. DISEÑO UML ==================== -->
+<section class="pagina">
+<h1 class="titulo-seccion">3 · Diseño UML</h1>
+
+<h2>3.1 Diagrama de casos de uso</h2>
+<figure><img src="diagramas/casos_uso.svg" alt="Casos de uso">
+<figcaption>Fig. 3.1 — Casos de uso del SGRSI por actor. Los casos protegidos incluyen autenticación; el registro extiende al solicitante sin cuenta.</figcaption></figure>
+<p>Los actores reflejan los roles reales del sistema (RBAC): <b>solicitante</b> (docentes y estudiantes), <b>técnico de soporte</b> y <b>administrador</b>, quien hereda las capacidades técnicas y agrega gestión de usuarios, solicitudes y métricas.</p>
+
+<h2>3.2 Planillas de casos de uso</h2>
+
+<h3>CU-01 · Autenticarse</h3>
+<table>
+<tr><td style="width:170px"><b>Actor principal</b></td><td>Cualquier usuario registrado (solicitante, técnico, administrador).</td></tr>
+<tr><td><b>Descripción</b></td><td>Permite ingresar al sistema identificándose con email y contraseña.</td></tr>
+<tr><td><b>Precondiciones</b></td><td>Cuenta existente y activa; usuario no autenticado aún.</td></tr>
+<tr><td><b>Flujo principal</b></td><td>1. El usuario accede a la pantalla de login.<br>2. Ingresa email y contraseña (el formulario valida formato en cliente y servidor).<br>3. El sistema busca el usuario por email.<br>4. Verifica la contraseña contra el hash bcrypt.<br>5. Regenera el ID de sesión, guarda id/rol en sesión y muestra el dashboard.</td></tr>
+<tr><td><b>Flujos alternativos</b></td><td>4a. Email inexistente o contraseña incorrecta: mensaje genérico «Credenciales incorrectas» (evita enumeración de usuarios).<br>2a. Campos vacíos o email inválido: errores por campo sin recargar.<br>b. Cuenta desactivada: acceso denegado informando contacto con administración.</td></tr>
+<tr><td><b>Postcondiciones</b></td><td>Sesión activa con rol cargado; registro de último acceso; o bien estado sin cambios si falló.</td></tr>
+</table>
+
+<h3>CU-02 · Reportar incidencia (ticket)</h3>
+<table>
+<tr><td style="width:170px"><b>Actor principal</b></td><td>Solicitante.</td></tr>
+<tr><td><b>Descripción</b></td><td>Reporta una falla de un equipo para que soporte la atienda.</td></tr>
+<tr><td><b>Precondiciones</b></td><td>Sesión iniciada como solicitante.</td></tr>
+<tr><td><b>Flujo principal</b></td><td>1. El solicitante abre «Nueva incidencia».<br>2. Completa título, descripción, prioridad y opcionalmente el equipo afectado.<br>3. El servidor valida datos y crea el ticket en estado <i>pendiente</i>.<br>4. El sistema confirma y redirige al detalle del ticket (patrón PRG).</td></tr>
+<tr><td><b>Flujos alternativos</b></td><td>3a. Datos inválidos: respuesta HTTP 400 con errores por campo.<br>2a. Si no existe el equipo buscado: puede reportar sin equipo asociado.</td></tr>
+<tr><td><b>Postcondiciones</b></td><td>Ticket visible en cola de soporte y en la lista personal del creador.</td></tr>
+</table>
+
+<h3>CU-03 · Atender incidencia</h3>
+<table>
+<tr><td style="width:170px"><b>Actor principal</b></td><td>Técnico / Administrador.</td></tr>
+<tr><td><b>Descripción</b></td><td>Gestión del ciclo de atención de un ticket hasta resolverlo.</td></tr>
+<tr><td><b>Precondiciones</b></td><td>Ticket existente; actor con rol técnico o administrador.</td></tr>
+<tr><td><b>Flujo principal</b></td><td>1. Abre el ticket desde la lista.<br>2. Lo pasa a <i>en proceso</i> (queda asignado).<br>3. Registra intervenciones intermedias (quedan con historial fechado).<br>4. Al finalizar marca <i>resuelto</i>; el sistema exige nota de resolución.</td></tr>
+<tr><td><b>Flujos alternativos</b></td><td>4a. Intento de resolver sin nota: validación rechaza el cambio.<br>b. Ticket ajeno/inexistente: 404 o 403 según corresponda.</td></tr>
+<tr><td><b>Postcondiciones</b></td><td>Ticket cerrado con resolución documentada; métricas actualizadas.</td></tr>
+</table>
+
+<h3>CU-04 · Registrar préstamo de equipo</h3>
+<table>
+<tr><td style="width:170px"><b>Actor principal</b></td><td>Técnico (a pedido del docente/estudiante).</td></tr>
+<tr><td><b>Descripción</b></td><td>Entrega en préstamo un equipo disponible con fecha límite.</td></tr>
+<tr><td><b>Precondiciones</b></td><td>Sesión técnica; equipo existente; usuario receptor registrado.</td></tr>
+<tr><td><b>Flujo principal</b></td><td>1. Abre «Nuevo préstamo».<br>2. Selecciona equipo, usuario y fecha límite.<br>3. El sistema verifica que el equipo esté <i>disponible</i> y sin préstamo activo.<br>4. Crea el préstamo activo y cambia el equipo a <i>prestado</i>.</td></tr>
+<tr><td><b>Flujos alternativos</b></td><td>3a. Equipo no disponible: validación 400 explicando el motivo.<br>2a. Fecha límite anterior a hoy: rechazo por validación.</td></tr>
+<tr><td><b>Postcondiciones</b></td><td>Préstamo activo registrado; equipo no prestable hasta devolución.</td></tr>
+</table>
+
+<h3>CU-05 · Crear solicitud de servicio</h3>
+<table>
+<tr><td style="width:170px"><b>Actor principal</b></td><td>Solicitante.</td></tr>
+<tr><td><b>Descripción</b></td><td>Pide formalmente un servicio al área (instalación de software, armado de laboratorio, soporte para evento).</td></tr>
+<tr><td><b>Precondiciones</b></td><td>Sesión iniciada.</td></tr>
+<tr><td><b>Flujo principal</b></td><td>1. Abre «Nueva solicitud».<br>2. Elige tipo, indica título, descripción, laboratorio y fecha de necesidad.<br>3. El servidor valida y crea la solicitud <i>pendiente</i>.<br>4. Confirmación y redirección al detalle.</td></tr>
+<tr><td><b>Flujos alternativos</b></td><td>3a. Fecha de necesidad pasada o campos faltantes: errores de validación.<br>b. Sin sesión: redirección a login.</td></tr>
+<tr><td><b>Postcondiciones</b></td><td>Solicitud en cola para atención del área de soporte.</td></tr>
+</table>
+
+<h3>CU-06 · Atender solicitud de servicio</h3>
+<table>
+<tr><td style="width:170px"><b>Actor principal</b></td><td>Administrador / Técnico autorizado.</td></tr>
+<tr><td><b>Descripción</b></td><td>Gestiona la solicitud hasta completarla o rechazarla con respuesta.</td></tr>
+<tr><td><b>Precondiciones</b></td><td>Solicitud pendiente; rol con permiso de atención.</td></tr>
+<tr><td><b>Flujo principal</b></td><td>1. Abre la solicitud desde la lista.<br>2. La pasa a <i>en proceso</i>.<br>3. Ejecuta el trabajo y marca <i>completada</i> escribiendo la respuesta obligatoria.<br>4. El sistema registra atendente y fecha de cierre.</td></tr>
+<tr><td><b>Flujos alternativos</b></td><td>2-4a. Rechazo: exige respuesta justificativa antes de cerrar como <i>rechazada</i>.<br>b. Respuesta vacía al cerrar: validación impide avanzar.</td></tr>
+<tr><td><b>Postcondiciones</b></td><td>Solicitud cerrada con trazabilidad completa (quién, cuándo, qué respondió).</td></tr>
+</table>
+
+<h2>3.3 Diagrama de clases (opcional)</h2>
+<p>Refleja la implementación real: entidades del dominio, servicios (reglas) y repositorios (acceso a datos con sentencias preparadas), sobre una conexión única <code>Database</code> (Singleton):</p>
+<figure><img src="diagramas/clases.svg" alt="Diagrama de clases" style="max-height:560px">
+<figcaption>Fig. 3.2 — Clases principales del SGRSI y sus relaciones (multiplicidades según el esquema 3FN).</figcaption></figure>
+
+<h2>3.4 Diagramas de estados</h2>
+
+<h3>Equipo</h3>
+<figure><img src="diagramas/estado_equipo.svg" alt="Estados equipo" style="max-height:330px">
+<figcaption>Fig. 3.3 — Ciclo de vida del equipo: disponible, prestado, en mantenimiento y baja (conserva historial).</figcaption></figure>
+
+<h3>Ticket de incidencia</h3>
+<figure><img src="diagramas/estado_ticket.svg" alt="Estados ticket" style="max-height:300px">
+<figcaption>Fig. 3.4 — Estados del ticket: pendiente, en proceso (con intervenciones) y resuelto.</figcaption></figure>
+
+<h3>Préstamo</h3>
+<figure><img src="diagramas/estado_prestamo.svg" alt="Estados préstamo" style="max-height:300px">
+<figcaption>Fig. 3.5 — El evento temporal de vencimiento pasa el préstamo activo a «vencido».</figcaption></figure>
+
+<h3>Solicitud de servicio</h3>
+<figure><img src="diagramas/estado_solicitud.svg" alt="Estados solicitud" style="max-height:300px">
+<figcaption>Fig. 3.6 — Solicitud: pendiente, en proceso, completada o rechazada (respuesta obligatoria al cerrar).</figcaption></figure>
+</section>
+
+<!-- ==================== 4. PAQUETES ==================== -->
+<section class="pagina">
+<h1 class="titulo-seccion">4 · Diagrama de paquetes</h1>
+<p>La organización por paquetes materializa la <b>arquitectura en tres capas</b>: la presentación nunca accede a la base de datos directamente; siempre pasa por servicios y repositorios. Las dependencias apuntan solo hacia abajo, lo que facilita evolucionar cada capa sin romper las demás.</p>
+<figure><img src="diagramas/paquetes.svg" alt="Diagrama de paquetes" style="max-height:540px">
+<figcaption>Fig. 4.1 — Paquetes del SGRSI y sus dependencias (coinciden con la estructura real de carpetas del repositorio).</figcaption></figure>
+</section>
+
+<!-- ==================== 5. RIESGOS ==================== -->
+<section class="pagina">
+<h1 class="titulo-seccion">5 · Gestión de riesgos</h1>
+<p>Seguimos el proceso de Sommerville: <b>identificación → análisis → planificación → monitoreo</b>. Probabilidad e impacto se estiman en escala Alta / Media / Baja; la exposición guía las prioridades de contingencia.</p>
+
+<h2>5.1 Registro de riesgos</h2>
+<table>
+<tr><th>ID</th><th>Riesgo</th><th>Categoría</th><th>Prob.</th><th>Impacto</th><th>Estrategia (mitigación)</th></tr>
+<tr><td>R1</td><td>Deserción o ausencia prolongada de un integrante (equipo de 3).</td><td>Personal</td><td>Media</td><td>Alto</td><td>Documentación en repo, código comentado y pareo rotativo para evitar «bus factor» 1.</td></tr>
+<tr><td>R2</td><td>Falta de tiempo por carga académica paralela en época de exámenes.</td><td>Proyecto</td><td>Alta</td><td>Medio</td><td>Cronograma con holgura (sección 6), tareas pequeñas asignadas, revisión semanal de avance.</td></tr>
+<tr><td>R3</td><td>Pérdida de datos/código por falla del equipo de desarrollo.</td><td>Técnico</td><td>Baja</td><td>Alto</td><td>Repositorio Git remoto privado + respaldo periódico del volcado MySQL.</td></tr>
+<tr><td>R4</td><td>Cambios de requisitos solicitados por el cliente entre entregas.</td><td>Negocio</td><td>Media</td><td>Medio</td><td>Modelo incremental: se re-planifica solo el incremento siguiente.</td></tr>
+<tr><td>R5</td><td>Vulnerabilidad de seguridad (inyección, XSS, acceso no autorizado).</td><td>Técnico</td><td>Media</td><td>Alto</td><td>Sentencias preparadas, escapado de salida, RBAC, bcrypt, CSRF; revisión al cerrar cada módulo.</td></tr>
+<tr><td>R6</td><td>Inconsistencia del esquema de BD entre integrantes (entornos locales distintos).</td><td>Técnico</td><td>Media</td><td>Medio</td><td>ddl.sql/dml.sql versionados como única fuente; import documentado en README.</td></tr>
+<tr><td>R7</td><td>Sobre-alcance: agregar funciones fuera de lo exigido en cada entrega.</td><td>Proyecto</td><td>Media</td><td>Medio</td><td>Definición de «terminado» por incremento según letra; backlog diferido a la 3ª entrega.</td></tr>
+<tr><td>R8</td><td>Indisponibilidad del laboratorio/servidor para demostraciones.</td><td>Negocio</td><td>Baja</td><td>Medio</td><td>XAMPP portable en notebook alternativa + video demostrativo de respaldo.</td></tr>
+</table>
+
+<h2>5.2 Plan de contingencia (riesgos priorizados)</h2>
+<table>
+<tr><th style="width:60px">Riesgo</th><th>Disparador (indicador temprano)</th><th>Plan de contingencia si ocurre</th></tr>
+<tr><td><b>R1</b></td><td>Más de 2 semanas sin actividad en Git del integrante o aviso de abandono.</td><td>Redistribución inmediata de sus tareas según la matriz de responsabilidades; sesión de traspaso usando este documento y los commits como guía; si nadie puede asumir un módulo, se recorta alcance del incremento negociando con el docente antes que incumplir calidad.</td></tr>
+<tr><td><b>R2</b></td><td>% de avance real bajo el planificado en dos revisiones semanales seguidas.</td><td>Activar holgura del Gantt, re-priorizar actividades obligatorias de la letra, mover opcionales (p. ej., refinamiento visual) al incremento siguiente.</td></tr>
+<tr><td><b>R3</b></td><td>Falla de hardware detectada o pérdida local de archivos.</td><td>Clonar el repositorio remoto en otra máquina (instrucciones del README), restaurar BD desde el último dump; pérdida máxima aceptada: 1 día de trabajo.</td></tr>
+<tr><td><b>R5</b></td><td>Detección de falla en revisión de seguridad o corrección docente.</td><td>Corrección prioritaria dentro del mismo incremento (hotfix), re-testeo de los casos afectados y anotación en el registro para evitar recurrencia.</td></tr>
+</table>
+
+<div class="nota"><b>Monitoreo:</b> el registro se revisa al inicio de cada semana de trabajo (15 min) y se actualiza probabilidad/impacto/estado. Riesgo materializado pasa a incidente con su entrada en el seguimiento de planificación (sección 6).</div>
+</section>
+
+<!-- ==================== 6. PLANIFICACIÓN ==================== -->
+<section class="pagina">
+<h1 class="titulo-seccion">6 · Seguimiento de la planificación</h1>
+
+<h2>6.1 Cronograma de la segunda entrega (Gantt)</h2>
+<p>Cronograma genérico de 8 semanas para el incremento 2, con 3 integrantes (M1, M2, M3). Los colores indican estado: <span style="display:inline-block;width:12px;height:12px;background:#2e9e5b;border-radius:3px;vertical-align:-1px"></span> completado · <span style="display:inline-block;width:12px;height:12px;background:#e0a800;border-radius:3px;vertical-align:-1px"></span> en curso · <span style="display:inline-block;width:12px;height:12px;background:#b9c4d0;border-radius:3px;vertical-align:-1px"></span> pendiente.</p>
+<table class="gantt">
+<tr><th style="width:290px">Actividad</th><th>Resp.</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S5</th><th>S6</th><th>S7</th><th>S8</th></tr>
+<tr><td>Validación metodológica</td><td>M1</td><td colspan="8"><div class="barra hecho" style="width:12%"></div></td></tr>
+<tr><td>Modelo esencial (ambiental + acontecimientos)</td><td>M2</td><td colspan="8"><div class="barra hecho" style="width:25%"></div></td></tr>
+<tr><td>Casos de uso + planillas</td><td>M2</td><td colspan="8"><div class="barra hecho" style="width:37%"></div></td></tr>
+<tr><td>Diseño UML (clases y estados)</td><td>M3</td><td colspan="8"><div class="barra hecho" style="width:50%"></div></td></tr>
+<tr><td>Núcleo del sistema (login RBAC + inventario)</td><td>M1/M2</td><td colspan="8"><div class="barra curso" style="width:62%"></div></td></tr>
+<tr><td>Módulos tickets, préstamos y solicitudes</td><td>M2/M3</td><td colspan="8"><div class="barra curso" style="width:75%"></div></td></tr>
+<tr><td>Gestión de riesgos y contingencia</td><td>M1</td><td colspan="8"><div class="barra curso" style="width:75%"></div></td></tr>
+<tr><td>Gantt y seguimiento de planificación</td><td>M1</td><td colspan="8"><div class="barra curso" style="width:75%"></div></td></tr>
+<tr><td>Video demostrativo del avance</td><td>M3</td><td colspan="8"><div class="barra pend" style="width:87%;margin-left:75%"></div></td></tr>
+<tr><td>Pruebas finales y sincronización Git</td><td>Todos</td><td colspan="8"><div class="barra pend" style="width:13%;margin-left:87%"></div></td></tr>
+</table>
+<p style="font-size:12px;color:#666">Semanas S1–S8 relativas al inicio del incremento 2; ajustar fechas reales del grupo antes de entregar.</p>
+
+<h2>6.2 Seguimiento del avance vs. planificado</h2>
+<table>
+<tr><th>Actividad</th><th>% planificado hoy</th><th>% real</th><th>Desvío</th><th>Acción correctiva</th></tr>
+<tr><td>Validación metodológica</td><td>100%</td><td>100%</td><td>—</td><td>—</td></tr>
+<tr><td>Modelo esencial y acontecimientos</td><td>100%</td><td>100%</td><td>—</td><td>—</td></tr>
+<tr><td>Casos de uso y planillas</td><td>100%</td><td>100%</td><td>—</td><td>—</td></tr>
+<tr><td>Diseño UML completo</td><td>100%</td><td>100%</td><td>—</td><td>—</td></tr>
+<tr><td>Núcleo del sistema implementado</td><td>80%</td><td>80%</td><td>—</td><td>—</td></tr>
+<tr><td>Módulos operativos con datos de prueba</td><td>80%</td><td>80%</td><td>—</td><td>—</td></tr>
+<tr><td>Riesgos / contingencia / Gantt</td><td>80%</td><td>80%</td><td>—</td><td>Completar esta misma semana.</td></tr>
+<tr><td>Video demostrativo</td><td>0%</td><td>0%</td><td>—</td><td>Grabar tras cerrar módulos (guion en sección 7).</td></tr>
+<tr><td>Sincronización Git</td><td>90%</td><td>90%</td><td>—</td><td>Pull-request final y etiqueta v0.2.0.</td></tr>
+</table>
+<div class="nota"><b>Regla de seguimiento:</b> reunión breve semanal donde cada integrante reporta % real de sus actividades contra este cuadro; todo desvío mayor a una semana activa el plan de contingencia R2.</div>
+</section>
+
+<!-- ==================== 7. AVANCE DEL PRODUCTO ==================== -->
+<section class="pagina">
+<h1 class="titulo-seccion">7 · Avance del producto</h1>
+<p>La letra exige un <b>video demostrativo de máximo 2 minutos</b> explicando al cliente el progreso del sistema. Guion propuesto (grabar pantalla + voz):</p>
+<table>
+<tr><th style="width:80px">Tiempo</th><th>Escena / captura</th><th>Narración sugerida</th></tr>
+<tr><td>0:00–0:15</td><td>Pantalla de login.</td><td>«PixelMind presenta SGRSI, el sistema que centraliza la gestión de recursos y soporte informático del instituto.»</td></tr>
+<tr><td>0:15–0:35</td><td>Login como administrador → dashboard con métricas.</td><td>«Cada usuario ingresa con su cuenta y rol. El personal de soporte ve de inmediato las métricas: equipos disponibles, tickets pendientes y solicitudes en espera.»</td></tr>
+<tr><td>0:35–0:55</td><td>Inventario: lista de equipos, alta rápida, detalle con historial.</td><td>«El inventario registra cada equipo con su estado e historial completo, para saber siempre qué hay, quién lo tiene y qué le pasó.»</td></tr>
+<tr><td>0:55–1:15</td><td>Reporte de una incidencia desde cuenta docente; vista del ticket para soporte.</td><td>«Un docente reporta una falla en segundos; el equipo técnico la recibe al instante, la asigna y documenta cada intervención hasta resolverla.»</td></tr>
+<tr><td>1:15–1:35</td><td>Préstamo de un equipo y devolución; alerta de vencidos.</td><td>«Los préstamos controlan disponibilidad y fecha límite, avisando automáticamente los vencidos.»</td></tr>
+<tr><td>1:35–1:50</td><td>Solicitud de servicio atendida; cambio de idioma a inglés.</td><td>«Las solicitudes de servicio quedan trazadas de punta a punta. Y todo el sistema está disponible también en inglés.»</td></tr>
+<tr><td>1:50–2:00</td><td>Vista final del dashboard.</td><td>«Con SGRSI, PixelMind ordena el soporte del instituto. Próximo paso: testing integral y métricas. ¡Gracias!»</td></tr>
+</table>
+
+<h2>8 · Sincronización — repositorio Git</h2>
+<table>
+<tr><th style="width:260px">Elemento</th><th>Estado</th></tr>
+<tr><td>Repositorio</td><td>Privado, a nombre de la empresa (<code>pixelmind/sgrsi</code>).</td></tr>
+<tr><td>Correcciones 1ª entrega</td><td>Aplicadas sobre los artefactos de planificación según devoluciones del docente.</td></tr>
+<tr><td>Contenido nuevo (2ª entrega)</td><td>Código fuente completo (commits convencionales <code>chore/feat/docs</code>) + carpeta <code>docs/ingenieria/</code> con este documento y sus diagramas fuente (.puml) e imágenes (.svg).</td></tr>
+<tr><td>Convenciones</td><td>Rama principal <code>main</code>; ramas <code>feature/&lt;módulo&gt;</code>; etiquetas SemVer (<code>v0.2.0</code> para esta entrega).</td></tr>
+<tr><td>Pendiente antes de entregar</td><td><code>git push</code> al remoto del grupo + etiquetar <code>v0.2.0</code>.</td></tr>
+</table>
+<div class="nota">Comandos: <code>git add docs/ingenieria &amp;&amp; git commit -m "docs(is): segunda entrega - diseño y métricas"</code> · <code>git tag v0.2.0 &amp;&amp; git push origin main --tags</code></div>
+</section>
+
+</body>
+</html>
+

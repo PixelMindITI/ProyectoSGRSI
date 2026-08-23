@@ -1,0 +1,50 @@
+@startuml secuencia_prestamo
+' Diagrama de SECUENCIA - Préstamo y devolución de equipo
+skinparam shadowing false
+actor "Docente /\nEstudiante" as U
+actor "Técnico" as T
+participant "prestamos/nuevo.php\ndevolver.php" as V
+participant "PrestamoServicio" as S
+participant "EquipoRepositorio" as RE
+participant "PrestamoRepositorio" as RP
+database "MySQL sgrsi" as BD
+
+U -> T : solicita equipo en mostrador
+T -> V : POST préstamo\n(equipo, usuario, fecha límite)
+activate V
+V -> S : registrar(equipoId, usuarioId, fechaLimite)
+activate S
+S -> RE : buscarPorId(equipoId)
+RE -> BD : SELECT estado del equipo
+BD --> RE : fila equipo
+RE --> S : Equipo
+alt equipo disponible
+  S -> RP : tieneActivo(equipoId)
+  RP -> BD : COUNT(prestamos sin devolver)
+  BD --> RP : 0
+  RP --> S : false
+  S -> RP : insertar(préstamo activo)
+  RP -> BD : INSERT prestamos +\nUPDATE equipos.estado = 'prestado'
+  BD --> RP : ok
+  RP --> S : Prestamo
+  S --> V : ok
+  V --> T : redirect 303 → listar.php
+else equipo NO disponible
+  S --> V : ValidacionException("no disponible")
+  V --> U : 400 + mensaje de error
+end
+deactivate S
+
+... días después ...
+
+T -> V : POST devolución (préstamo N)
+V -> S : devolver(prestamoId)
+activate S
+S -> RP : registrarDevolucion(hoy)
+RP -> BD : UPDATE prestamos SET fecha_devolucion\nUPDATE equipos.estado = 'disponible'
+RP --> S : ok
+S --> V : ok
+V --> T : confirmación
+deactivate S
+deactivate V
+@enduml

@@ -1,0 +1,14 @@
+@startuml estado_ticket
+' Diagrama de ESTADOS - Ticket de incidencia
+skinparam shadowing false
+[*] --> Pendiente : solicitante reporta incidencia\n(prioridad inicial según catálogo)
+Pendiente --> EnProceso : soporte toma el ticket\n(se asigna técnico)
+Pendiente --> Pendiente : re-priorización\n(administrador)
+EnProceso --> Resuelto : nota de resolución obligatoria
+EnProceso --> EnProceso : intervenciones intermedias\n(historial en intervenciones_ticket)
+Resuelto --> [*]
+
+Pendiente : sin atención, en cola visible para soporte
+EnProceso : con técnico asignado trabajando
+Resuelto : cerrado; el solicitante puede verificar la solución
+@enduml

@@ -1,0 +1,62 @@
+@startuml paquetes
+' Diagrama de PAQUETES - arquitectura en 3 capas del SGRSI
+skinparam shadowing false
+skinparam packageStyle rectangle
+
+package "Presentación" {
+  package "public" {
+    [*.php páginas\n(Page Controllers)]
+    package assets {
+      [CSS mobile-first]
+      [JS validaciones]
+    }
+    [includes/\nheader · footer]
+  }
+}
+
+package "Núcleo transversal (core)" {
+  [Database]
+  [Sesion]
+  [Auth RBAC]
+  [Validador]
+  [Csrf]
+  [Idioma]
+}
+
+package "Negocio (app)" {
+  package servicios {
+    [Servicios de dominio]
+  }
+  package entidades {
+    [Entidades POO]
+  }
+  package excepciones {
+    [Excepciones propias]
+  }
+}
+
+package "Acceso a datos (app)" {
+  package repositorios {
+    [Repositorios DAO]
+  }
+}
+
+package "Persistencia" {
+  database "MySQL sgrsi\n(esquema 3FN)" as DB
+}
+
+package "Configuración" {
+  [config.php\n(fuera del repo)]
+}
+
+[*.php páginas] --> [Servicios de dominio]
+[*.php páginas] --> [Auth RBAC]
+[*.php páginas] --> [Validador]
+[Servicios de dominio] --> [Entidades POO]
+[Servicios de dominio] --> [Repositorios DAO]
+[Servicios de dominio] --> [Excepciones propias]
+[Repositorios DAO] --> [Database]
+[Database] --> [config.php]
+[Sesion] --> [config.php]
+[Repositorios DAO] --> DB
+@enduml

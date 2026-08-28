@@ -134,6 +134,19 @@ class TicketServicio
         return $this->repositorio->intervenciones($ticketId);
     }
 
+    /**
+     * Borrado lógico de un ticket: el administrador puede eliminar cualquier
+     * ticket y el solicitante únicamente los propios. El historial se conserva.
+     */
+    public function eliminar(int $ticketId): void
+    {
+        $ticket = $this->obtenerPorId($ticketId);
+        if (!Auth::esAdmin() && $ticket->solicitanteId() !== (int)Sesion::id()) {
+            throw new AccesoDenegadoException('No tiene permisos para eliminar este ticket.');
+        }
+        $this->repositorio->eliminar($ticketId);
+    }
+
     private function idRol(string $nombre): int
     {
         $id = array_search($nombre, $this->catalogos->roles(), true);

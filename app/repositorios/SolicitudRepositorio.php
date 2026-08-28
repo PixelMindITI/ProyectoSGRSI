@@ -19,13 +19,13 @@ class SolicitudRepositorio extends RepositorioBase
 
     public function buscarPorId(int $id): ?Solicitud
     {
-        $fila = $this->fila(self::SELECT_BASE . ' WHERE ss.id = ?', 'i', [$id]);
+        $fila = $this->fila(self::SELECT_BASE . ' WHERE ss.id = ? AND ss.eliminado = 0', 'i', [$id]);
         return $fila ? $this->mapear($fila) : null;
     }
 
     public function listar(array $filtros = [], int $soloUsuarioId = 0): array
     {
-        $sql = self::SELECT_BASE . ' WHERE 1=1';
+        $sql = self::SELECT_BASE . ' WHERE 1=1 AND ss.eliminado = 0';
         $tipos = '';
         $params = [];
 
@@ -75,12 +75,18 @@ class SolicitudRepositorio extends RepositorioBase
         $this->modificar($sql, 'isii', [$estadoId, $respuesta ?: null, $atendidaPor, $id]);
     }
 
+    /** Borrado lógico: oculta la solicitud pero conserva su historial (trazabilidad). */
+    public function eliminar(int $id): void
+    {
+        $this->modificar('UPDATE solicitudes_servicio SET eliminado = 1 WHERE id = ?', 'i', [$id]);
+    }
+
     public function contarPendientes(): int
     {
         return (int)$this->escalar(
             "SELECT COUNT(*) FROM solicitudes_servicio ss
              JOIN estados_solicitud es ON es.id = ss.estado_id
-             WHERE es.nombre IN ('pendiente','en_proceso')"
+             WHERE es.nombre IN ('pendiente','en_proceso') AND ss.eliminado = 0"
         );
     }
 

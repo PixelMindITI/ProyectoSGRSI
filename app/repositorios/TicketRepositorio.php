@@ -21,7 +21,7 @@ class TicketRepositorio extends RepositorioBase
 
     public function buscarPorId(int $id): ?Ticket
     {
-        $fila = $this->fila(self::SELECT_BASE . ' WHERE t.id = ?', 'i', [$id]);
+        $fila = $this->fila(self::SELECT_BASE . ' WHERE t.id = ? AND t.eliminado = 0', 'i', [$id]);
         return $fila ? $this->mapear($fila) : null;
     }
 
@@ -31,7 +31,7 @@ class TicketRepositorio extends RepositorioBase
      */
     public function listar(array $filtros = [], int $soloUsuarioId = 0): array
     {
-        $sql = self::SELECT_BASE . ' WHERE 1=1';
+        $sql = self::SELECT_BASE . ' WHERE 1=1 AND t.eliminado = 0';
         $tipos = '';
         $params = [];
 
@@ -96,6 +96,12 @@ class TicketRepositorio extends RepositorioBase
         );
     }
 
+    /** Borrado lógico: oculta el ticket pero conserva su historial (trazabilidad). */
+    public function eliminar(int $ticketId): void
+    {
+        $this->modificar('UPDATE tickets SET eliminado = 1 WHERE id = ?', 'i', [$ticketId]);
+    }
+
     /* ---------------- Intervenciones ---------------- */
 
     public function agregarIntervencion(int $ticketId, int $tecnicoId, string $diagnostico, bool $esResolucion = false): void
@@ -125,14 +131,14 @@ class TicketRepositorio extends RepositorioBase
         return $this->filas(
             'SELECT et.nombre AS estado, COUNT(t.id) AS total
              FROM estados_ticket et
-             LEFT JOIN tickets t ON t.estado_id = et.id
+             LEFT JOIN tickets t ON t.estado_id = et.id AND t.eliminado = 0
              GROUP BY et.id, et.nombre'
         );
     }
 
     public function promedioResolucionDias(): ?float
     {
-        $v = $this->escalar('SELECT AVG(TIMESTAMPDIFF(HOUR, fecha_creacion, fecha_resolucion)) FROM tickets WHERE fecha_resolucion IS NOT NULL');
+        $v = $this->escalar('SELECT AVG(TIMESTAMPDIFF(HOUR, fecha_creacion, fecha_resolucion)) FROM tickets WHERE fecha_resolucion IS NOT NULL AND eliminado = 0');
         return $v === null ? null : round((float)$v / 24, 1);
     }
 

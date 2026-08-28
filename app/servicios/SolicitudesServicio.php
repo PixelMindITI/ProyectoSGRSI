@@ -104,4 +104,17 @@ class SolicitudesServicio
     {
         return Auth::esSoporte() || $s->solicitanteId() === Sesion::id();
     }
+
+    /**
+     * Borrado lógico de una solicitud: el administrador puede eliminar cualquier
+     * solicitud y el solicitante únicamente las propias. El historial se conserva.
+     */
+    public function eliminar(int $id): void
+    {
+        $solicitud = $this->obtenerPorId($id);
+        if (!Auth::esAdmin() && $solicitud->solicitanteId() !== (int)Sesion::id()) {
+            throw new AccesoDenegadoException('No tiene permisos para eliminar esta solicitud.');
+        }
+        $this->repositorio->eliminar($id);
+    }
 }

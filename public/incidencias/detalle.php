@@ -65,6 +65,14 @@ require __DIR__ . '/../includes/header.php';
     </div>
     <div class="d-flex gap-2 align-items-center">
         <?= badge($ticket->prioridadNombre()) ?> <?= badge($ticket->estadoNombre()) ?>
+        <?php if (Auth::esAdmin() || $ticket->solicitanteId() === (int)Sesion::id()): ?>
+            <form method="post" action="eliminar.php" class="d-inline"
+                  data-confirmar="¿Eliminar el ticket #<?= $ticket->id() ?>? El historial se conservará para auditoría.">
+                <?= Csrf::campo() ?>
+                <input type="hidden" name="id" value="<?= $ticket->id() ?>">
+                <button type="submit" class="btn btn-sm btn-outline-danger"><?= e('Eliminar') ?></button>
+            </form>
+        <?php endif; ?>
     </div>
 </div>
 

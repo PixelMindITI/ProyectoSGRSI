@@ -82,7 +82,17 @@ require __DIR__ . '/../includes/header.php';
                     <td><?= badge($tk->prioridadNombre()) ?></td>
                     <td><?= badge($tk->estadoNombre()) ?></td>
                     <td class="d-none d-lg-table-cell small"><?= formatearFecha($tk->fechaCreacion(), true) ?></td>
-                    <td class="text-end"><a class="btn btn-sm btn-outline-primary" href="detalle.php?id=<?= $tk->id() ?>"><?= e(t('ver')) ?></a></td>
+                    <td class="text-end">
+                        <a class="btn btn-sm btn-outline-primary" href="detalle.php?id=<?= $tk->id() ?>"><?= e(t('ver')) ?></a>
+                        <?php if (Auth::esAdmin() || $tk->solicitanteId() === (int)Sesion::id()): ?>
+                            <form method="post" action="eliminar.php" class="d-inline"
+                                  data-confirmar="¿Eliminar el ticket #<?= $tk->id() ?>?">
+                                <?= Csrf::campo() ?>
+                                <input type="hidden" name="id" value="<?= $tk->id() ?>">
+                                <button type="submit" class="btn btn-sm btn-outline-danger"><?= e('Eliminar') ?></button>
+                            </form>
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

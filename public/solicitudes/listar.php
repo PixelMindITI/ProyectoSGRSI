@@ -67,7 +67,17 @@ require __DIR__ . '/../includes/header.php';
                     <td class="d-none d-xl-table-cell"><?= e($so->laboratorio() ?: '—') ?></td>
                     <td><?= formatearFecha($so->fechaNecesidad()) ?></td>
                     <td><?= badge($so->estadoNombre()) ?></td>
-                    <td class="text-end"><a class="btn btn-sm btn-outline-primary" href="detalle.php?id=<?= $so->id() ?>"><?= e(t('ver')) ?></a></td>
+                    <td class="text-end">
+                        <a class="btn btn-sm btn-outline-primary" href="detalle.php?id=<?= $so->id() ?>"><?= e(t('ver')) ?></a>
+                        <?php if (Auth::esAdmin() || $so->solicitanteId() === (int)Sesion::id()): ?>
+                            <form method="post" action="eliminar.php" class="d-inline"
+                                  data-confirmar="¿Eliminar la solicitud #<?= $so->id() ?>?">
+                                <?= Csrf::campo() ?>
+                                <input type="hidden" name="id" value="<?= $so->id() ?>">
+                                <button type="submit" class="btn btn-sm btn-outline-danger"><?= e('Eliminar') ?></button>
+                            </form>
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

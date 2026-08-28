@@ -60,6 +60,14 @@ require __DIR__ . '/../includes/header.php';
         </small>
     </div>
     <?= badge($solicitud->estadoNombre()) ?>
+    <?php if (Auth::esAdmin() || $solicitud->solicitanteId() === (int)Sesion::id()): ?>
+        <form method="post" action="eliminar.php" class="d-inline"
+              data-confirmar="¿Eliminar la solicitud #<?= $solicitud->id() ?>? El historial se conservará para auditoría.">
+            <?= Csrf::campo() ?>
+            <input type="hidden" name="id" value="<?= $solicitud->id() ?>">
+            <button type="submit" class="btn btn-sm btn-outline-danger"><?= e('Eliminar') ?></button>
+        </form>
+    <?php endif; ?>
 </div>
 
 <div class="row g-3">

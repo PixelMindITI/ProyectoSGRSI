@@ -1,0 +1,223 @@
+/* ============ SITIO PROYECTO SGRSI - Estética Instituto Tecnológico de Informática (ITI-UTU) ============ */
+:root {
+    --azul-institucional: #002855;
+    --azul-header: #064795;
+    --azul-nav: #001f44;
+    --naranja-iti: #ff6600;
+    --naranja-hover: #e65c00;
+    --rojo-urgente: #dc2626;
+    --rojo-hover: #b91c1c;
+    --blanco: #ffffff;
+    --gris-bg: #f8fafc;
+    --gris-2: #edf2f7;
+    --texto: #333333;
+    --texto-mutado: #64748b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--texto);
+    background: var(--blanco);
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+/* ---------- BARRA SUPERIOR (clon institucional) ---------- */
+#top-barra {
+    background: var(--azul-nav);
+    color: rgba(255,255,255,0.85);
+    font-size: 12.5px;
+    padding: 7px 0;
+    letter-spacing: .4px;
+}
+#top-barra .cont { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+#top-barra a { color:#fff; text-decoration:none; }
+#top-barra .azienda { color: var(--naranja-iti); font-weight:600; }
+
+/* ---------- HEADER FIJO (medio) ---------- */
+#site-header {
+    position: sticky; top: 0; z-index: 9999;
+    background-color: var(--azul-header);
+    box-shadow: 0 2px 12px rgba(0,40,85,.25);
+}
+#site-header .top-header { padding: 14px 0 10px; }
+#site-header .logo-wrap { display:flex; align-items:center; gap:14px; justify-content:space-between; flex-wrap:wrap; }
+#site-header .brand { display:flex; align-items:center; gap:12px; }
+#site-header .brand img { height:46px; width:auto; }
+#site-header .brand .titles { line-height:1.15; }
+#site-header .brand .titles b { color:#fff; font-size:17px; display:block; }
+#site-header .brand .titles span { color:rgba(255,255,255,.82); font-size:12px; }
+#site-header .buscar input {
+    border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.12);
+    color:#fff; border-radius:30px; padding:7px 16px; width:230px; font-size:13px; outline:none;
+}
+#site-header .buscar input::placeholder { color:rgba(255,255,255,.65); }
+
+/* ---------- NAV ---------- */
+#nav-wrap { background: var(--azul-nav); }
+#nav-wrap ul { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; }
+#nav-wrap li { position:relative; }
+#nav-wrap a { display:block; color:#fff; text-decoration:none; font-size:13.5px; letter-spacing:.6px;
+    padding:12px 20px; border-bottom:3px solid transparent; transition:.2s; }
+#nav-wrap a:hover, #nav-wrap a.activo { border-bottom-color: var(--naranja-iti); background:rgba(255,255,255,.06); }
+#nav-wrap .caret { color: var(--naranja-iti); }
+
+/* ---------- CONTENEDOR ---------- */
+.cont { width:100%; max-width:1120px; margin:0 auto; padding:0 20px; }
+
+/* ---------- HERO (clon institucional) ---------- */
+.iti-hero {
+    position: relative; padding: 78px 0;
+    background: linear-gradient(105deg, rgba(0,40,85,.98) 0%, rgba(0,40,85,.88) 60%, rgba(0,40,85,.45) 100%),
+        linear-gradient(160deg, #0a3d7c, #05254f);
+    background-size: cover; color: #fff; overflow: hidden;
+}
+.iti-hero::after { content:""; position:absolute; right:-120px; top:-80px; width:340px; height:340px;
+    border-radius:50%; background:radial-gradient(circle, rgba(255,102,0,.25), transparent 70%); }
+.iti-hero-badge {
+    display:inline-flex; align-items:center; background:rgba(255,255,255,.08);
+    padding:6px 16px; border-radius:50px; font-size:.85rem; font-weight:600; margin-bottom:20px;
+    border:1px solid rgba(255,255,255,.15);
+}
+.iti-dot { height:8px; width:8px; background-color:var(--naranja-iti); border-radius:50%;
+    display:inline-block; margin-right:10px; box-shadow:0 0 8px var(--naranja-iti); }
+.iti-hero h1 { font-size:3rem; margin:0 0 14px; font-weight:800; line-height:1.18; }
+.text-naranja { color: var(--naranja-iti); }
+.iti-hero p.lead { font-size:1.12rem; color:rgba(255,255,255,.9); margin-bottom:32px; max-width:640px; }
+.iti-hero-btns { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+.btn-main { background:var(--naranja-iti); color:#fff; padding:14px 30px; border-radius:6px;
+    text-decoration:none; font-weight:700; display:inline-block; transition:.3s;
+    box-shadow:0 4px 12px rgba(255,102,0,.22); }
+.btn-main:hover { background:var(--naranja-hover); transform:translateY(-3px); box-shadow:0 6px 20px rgba(255,102,0,.4); }
+.btn-sec { padding:12px 30px; border-radius:6px; font-weight:700; text-decoration:none; display:inline-block;
+    transition:.3s; background-color:transparent; color:#fff; border:2px solid rgba(255,255,255,.9); }
+.btn-sec:hover { background-color:#fff; color:var(--azul-institucional); transform:translateY(-3px); }
+.btn-blanco { background:#fff; color:var(--azul-institucional); }
+
+/* ---------- SECCIÓN DE CARTELERAS (2 cajas) ---------- */
+.iti-news-section { padding:70px 0; background:linear-gradient(180deg, var(--gris-bg) 0%, var(--gris-2) 100%); }
+.iti-news-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:stretch; }
+.iti-box-urgent, .iti-box-general { background:#fff; border-radius:16px; padding:42px; display:flex; flex-direction:column;
+    box-shadow:0 10px 30px rgba(0,40,85,.03); transition:all .4s cubic-bezier(.16,1,.3,1); }
+.iti-box-urgent { border:1px solid #fee2e2; border-top:6px solid var(--rojo-urgente); }
+.iti-box-general { border:1px solid #e2e8e0; border-top:6px solid var(--azul-institucional); }
+.iti-box-urgent:hover, .iti-box-general:hover { transform:translateY(-6px); box-shadow:0 25px 50px rgba(0,40,85,.09); }
+.iti-badge-status { display:inline-flex; align-items:center; font-size:.8rem; font-weight:700; letter-spacing:1px;
+    padding:6px 14px; border-radius:4px; margin-bottom:22px; }
+.iti-badge-status.urgent { background:#fee2e2; color:var(--rojo-urgente); }
+.iti-badge-status.info { background:#e0f2fe; color:#0369a1; }
+.dot-urgent { height:8px; width:8px; background-color:var(--rojo-urgente); border-radius:50%; display:inline-block; margin-right:8px; }
+.iti-box-urgent h2, .iti-box-general h2 { font-size:28px; color:var(--azul-institucional); font-weight:800; line-height:1.2; margin:0 0 12px; }
+.iti-box-urgent p, .iti-box-general p { font-size:14.5px; color:var(--texto-mutado); line-height:1.65; margin-bottom:28px; flex-grow:1; }
+.btn-action-urgent, .btn-action-general { padding:13px 26px; border-radius:8px; text-decoration:none; font-weight:700;
+    display:inline-flex; align-items:center; justify-content:center; transition:.3s; }
+.btn-action-urgent { background:var(--rojo-urgente); color:#fff; }
+.btn-action-urgent:hover { background:var(--rojo-hover); }
+.btn-action-general { background:var(--azul-institucional); color:#fff; }
+.iti-box-general:hover .btn-action-general { background:var(--naranja-iti); }
+.btn-action-urgent .arrow, .btn-action-general .arrow { margin-left:8px; transition:transform .3s; display:inline-block; }
+.iti-box-urgent:hover .arrow, .iti-box-general:hover .arrow { transform:translateX(6px); }
+
+/* ---------- TARJETAS / GRILLAS GENÉRICAS ---------- */
+.seccion { padding:64px 0; }
+.seccion-gris { background:var(--gris-bg); }
+.encabezado-seccion { text-align:center; margin-bottom:40px; }
+.encabezado-seccion .etiqueta { display:inline-block; background:#e0f2fe; color:#0369a1; font-size:.78rem; font-weight:700;
+    letter-spacing:1px; padding:5px 14px; border-radius:4px; margin-bottom:14px; }
+.encabezado-seccion h2 { font-size:30px; color:var(--azul-institucional); font-weight:800; margin:0 0 10px; line-height:1.2; }
+.encabezado-seccion p { color:var(--texto-mutado); max-width:680px; margin:0 auto; }
+.grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.tarjeta { background:#fff; border:1px solid #e2e8e0; border-top:5px solid var(--azul-institucional); border-radius:12px;
+    padding:26px; transition:.3s; }
+.tarjeta:hover { transform:translateY(-5px); box-shadow:0 18px 40px rgba(0,40,85,.1); }
+.tarjeta h3 { color:var(--azul-institucional); font-size:18px; margin:12px 0 8px; }
+.tarjeta p { color:var(--texto-mutado); font-size:13.5px; margin:0 0 14px; }
+.tarjeta .icono { font-size:30px; }
+.boton-link { color:var(--naranja-iti); text-decoration:none; font-weight:700; font-size:13.5px; }
+.boton-link:hover { text-decoration:underline; }
+
+/* ---------- LÍNEA DE TIEMPO DE ENTREGAS ---------- */
+.timeline { list-style:none; margin:24px 0 0; padding:0; position:relative; }
+.timeline::before { content:""; position:absolute; left:19px; top:0; bottom:0; width:3px;
+    background:linear-gradient(180deg, var(--naranja-iti), var(--azul-institucional)); border-radius:3px; }
+.timeline li { position:relative; padding:0 0 30px 60px; }
+.timeline li::before { content:""; position:absolute; left:10px; top:4px; width:22px; height:22px; border-radius:50%;
+    background:#fff; border:6px solid var(--naranja-iti); box-shadow:0 0 0 4px rgba(255,102,0,.15); }
+.timeline li.e2::before { border-color:var(--azul-institucional); box-shadow:0 0 0 4px rgba(0,40,85,.15); }
+.timeline .fecha { font-size:12px; color:var(--naranja-iti); font-weight:700; letter-spacing:1px; }
+.timeline li.e2 .fecha { color:var(--azul-institucional); }
+.timeline h3 { margin:2px 0 6px; color:var(--azul-institucional); font-size:19px; }
+.timeline p { margin:0; color:var(--texto-mutado); font-size:14px; }
+
+/* ---------- BADGES DE ENTREGA E1/E2 (hilo conductor) ---------- */
+.badge-e { display:inline-block; font-size:11px; font-weight:800; letter-spacing:1.5px; padding:3px 12px;
+    border-radius:30px; vertical-align:middle; }
+.badge-e1 { background:#fff1e0; color:#b45309; border:1px solid #fed7aa; }
+.badge-e2 { background:#dbeafe; color:#1d4ed8; border:1px solid #bfdbfe; }
+.enlace-cruzado { background:#fffbeb; border:1px solid #fde68a; border-left:5px solid var(--naranja-iti);
+    border-radius:8px; padding:12px 16px; margin:14px 0; font-size:13.5px; color:#92400e; }
+.enlace-cruzado b { color:#b45309; }
+
+/* ---------- DOCUMENTO (tablas, figuras, notas, pre) ---------- */
+.doc { background:#fff; border:1px solid #e2e8e0; border-radius:14px; padding:30px 32px; box-shadow:0 8px 28px rgba(0,40,85,.05); }
+.doc h2 { color:var(--azul-institucional); font-size:22px; border-bottom:3px solid var(--naranja-iti); display:inline-block; padding-bottom:4px; margin:34px 0 14px; }
+.doc h3 { color:var(--azul-institucional); font-size:17px; margin:24px 0 8px; }
+.doc h3 .hilo { font-size:12px; font-weight:700; color:var(--texto-mutado); }
+.doc table { border-collapse:collapse; width:100%; margin:12px 0 18px; font-size:13.5px; }
+.doc th { background:var(--azul-institucional); color:#fff; text-align:left; padding:8px 10px; border:1px solid var(--azul-institucional); }
+.doc td { border:1px solid #d8e0ea; padding:7px 10px; vertical-align:top; background:#fff; }
+.doc tr:nth-child(even) td { background:#f6f9fd; }
+.doc figure { margin:16px 0; text-align:center; page-break-inside:avoid; }
+.doc figure img { max-width:100%; max-height:440px; border:1px solid #d8e0ea; border-radius:8px; padding:10px; background:#fff; }
+.doc figcaption { font-size:12.5px; color:var(--texto-mutado); margin-top:6px; }
+.nota { background:#e0f2fe; border-left:5px solid #0369a1; border-radius:0 8px 8px 0; padding:12px 16px; margin:14px 0; font-size:13.5px; }
+.alerta-doc { background:#fee2e2; border-left:5px solid var(--rojo-urgente); border-radius:0 8px 8px 0; padding:12px 16px; margin:14px 0; font-size:13.5px; }
+pre { background:#0b1220; color:#d8e3f0; border-radius:8px; padding:14px 16px; overflow-x:auto; font-family:Consolas,monospace; font-size:12.5px; line-height:1.55; }
+code { background:#eef2f7; padding:1px 6px; border-radius:4px; font-family:Consolas,monospace; font-size:12.5px; }
+.miga { font-size:12.5px; color:var(--texto-mutado); background:var(--gris-bg); padding:9px 0; border-bottom:1px solid #e2e8e0; }
+.miga a { color:var(--azul-institucional); text-decoration:none; }
+.miga .sep { margin:0 6px; }
+
+/* ---------- FOOTER (clon institucional) ---------- */
+#site-footer { margin-top:0; }
+#footer-principal { background: var(--azul-nav); color:rgba(255,255,255,.85); padding:38px 0 30px; }
+#footer-principal h4 { color:#fff; font-size:14px; letter-spacing:1px; margin:0 0 14px; text-transform:uppercase; }
+#footer-principal a { color:rgba(255,255,255,.8); text-decoration:none; }
+#footer-principal a:hover { color:var(--naranja-iti); }
+#footer-principal p { font-size:13px; margin:4px 0; }
+#footer-copy { background:var(--azul-institucional); color:rgba(255,255,255,.75); font-size:12.5px; padding:14px 0; text-align:center; }
+#footer-copy b { color:#fff; }
+
+/* ---------- BOTÓN FLOTANTE CONTACTO (clon institucional) ---------- */
+#btn-flotante { position:fixed; bottom:28px; right:20px; background:#005baa; color:#fff; font-size:14.5px;
+    padding:12px 18px; border-radius:30px; text-decoration:none; box-shadow:0 4px 10px rgba(0,0,0,.3);
+    z-index:9999; font-family:Arial,sans-serif; transition:.3s; }
+#btn-flotante:hover { transform:scale(1.08); background:var(--azul-institucional); }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 860px) {
+    .grid-3, .grid-4 { grid-template-columns:1fr 1fr; }
+    .iti-news-grid { grid-template-columns:1fr; }
+    .iti-hero h1 { font-size:2.1rem; }
+    .doc { padding:20px 18px; }
+    #site-header .buscar { display:none; }
+}
+@media (max-width: 560px) {
+    .grid-3, .grid-4 { grid-template-columns:1fr; }
+    .iti-hero-btns { flex-direction:column; align-items:stretch; }
+}
+
+/* ---------- IMPRESIÓN ---------- */
+@media print {
+    #top-barra, #nav-wrap, #btn-flotante, .buscar { display:none !important; }
+    #site-header { position:static; }
+    body { font-size:11.5px; }
+    .doc { border:none; box-shadow:none; padding:0; }
+    .seccion { padding:0; }
+    a { color:inherit; }
+    pre, table, figure { page-break-inside:avoid; }
+}

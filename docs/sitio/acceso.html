@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso al sistema - SGRSI · PixelMind</title>
+<link rel="stylesheet" href="assets/estilo_sitio.css">
+</head>
+<body>
+
+<div id="top-barra">
+    <div class="cont">
+        <span>ITI – UTU · Instituto Tecnológico de Informática · <b class="azienda">Proyecto de Egreso 2026</b></span>
+        <span>Grupo <b>PixelMind</b></span>
+    </div>
+</div>
+
+<header id="site-header">
+    <div class="cont top-header">
+        <div class="logo-wrap">
+            <div class="brand">
+                <img src="assets/pixelmind_logo.png" alt="Logo PixelMind">
+                <div class="titles"><b>SGRSI · PixelMind</b><span>Sistema de Gestión de Recursos y Soporte de Informática</span></div>
+            </div>
+        </div>
+    </div>
+    <div id="nav-wrap">
+        <div class="cont">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="ingenieria.html">Ingeniería de Software</a></li>
+                <li><a href="sistemas.html">Adm. de Sistemas Operativos</a></li>
+                <li><a href="index.html#entregas">Entregas</a></li>
+                <li><a href="acceso.html" class="activo">Acceso al sistema</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="miga"><div class="cont"><a href="index.html">Inicio</a><span class="sep">›</span>Acceso al sistema</div></div>
+
+<section class="seccion">
+    <div class="cont">
+        <div class="encabezado-seccion">
+            <div class="etiqueta">DEMO DEL PROYECTO</div>
+            <h2>Ingresar a SGRSI</h2>
+            <p>La aplicación corre sobre Apache + MySQL. Con el servidor local iniciado (XAMPP), el sistema queda disponible en el siguiente enlace.</p>
+        </div>
+        <div class="grid-3">
+            <div class="tarjeta">
+                <div class="icono">🌐</div>
+                <h3>Acceso local</h3>
+                <p>Servidor Apache con la base de datos <code>sgrsi</code> importada. Usuarios de prueba: administrador, técnico/soporte y solicitante/docente.</p>
+                <a class="boton-link" href="http://localhost/SGRSI/">http://localhost/SGRSI/ →</a>
+            </div>
+            <div class="tarjeta">
+                <div class="icono">⌨️</div>
+                <h3>Repositorio Git</h3>
+                <p>Repositorio privado de la empresa con commits convencionales (<code>chore/feat/docs</code>), rama <code>main</code> y etiqueta SemVer <code>v0.2.0</code>.</p>
+                <a class="boton-link" href="https://github.com/" target="_blank">pixelmind/sgrsi →</a>
+            </div>
+            <div class="tarjeta">
+                <div class="icono">📎</div>
+                <h3>Entregables</h3>
+                <p>Documentación del proyecto por entrega, en la carpeta <code>docs/</code> del repositorio (HTML + PDF).</p>
+                <p style="margin-top:8px;">
+                    <a class="boton-link" href="../ingenieria/SGRSI_1raEntrega_IS.pdf">1ª entrega · Ingeniería (PDF) →</a><br>
+                    <a class="boton-link" href="../ingenieria/SGRSI_2daEntrega_PixelMind.pdf">2ª entrega · Ingeniería (PDF) →</a><br>
+                    <a class="boton-link" href="../sistemas_operativos/SGRSI_2daEntrega_SO_APA.pdf">2ª entrega · Sistemas Operativos (PDF) →</a><br>
+                    <a class="boton-link" href="../ciberseguridad/SGRSI_2daEntrega_Ciberseguridad.pdf">2ª entrega · Ciberseguridad (PDF) →</a>
+                </p>
+                <a class="boton-link" href="index.html#entregas">Ver cronograma →</a>
+            </div>
+        </div>
+
+        <h2 style="color:var(--azul-institucional);margin-top:50px;">Cuentas de prueba</h2>
+        <div class="doc">
+            <table>
+                <tr><th>Rol</th><th>Usuario</th><th>Contraseña</th></tr>
+                <tr><td>Administrador</td><td>admin</td><td>admin123</td></tr>
+                <tr><td>Soporte técnico</td><td>tecnico</td><td>tecnico123</td></tr>
+                <tr><td>Solicitante / docente</td><td>solicitante</td><td>solicitante123</td></tr>
+            </table>
+            <div class="nota"><b>RBAC activado:</b> cada rol ve solo sus módulos; el acceso directo a rutas no autorizadas responde HTTP 403. Lenguajes ES / EN disponibles.</div>
+        </div>
+    </div>
+</section>
+
+<footer id="site-footer">
+    <div id="footer-principal">
+        <div class="cont" style="display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;">
+            <div>
+                <img src="assets/pixelmind_logo.png" alt="PixelMind" style="height:38px;">
+                <h4 style="margin-top:12px;">PixelMind · SGRSI</h4>
+                <p>Sistema de Gestión de Recursos y Soporte de Informática · ITI – CETP 2026</p>
+            </div>
+            <div>
+                <h4>Páginas</h4>
+                <p><a href="index.html">Inicio</a></p>
+                <p><a href="ingenieria.html">Ingeniería de Software</a></p>
+                <p><a href="sistemas.html">Adm. de Sistemas Operativos</a></p>
+            </div>
+        </div>
+    </div>
+    <div id="footer-copy"><div class="cont">© 2026 <b>PixelMind</b> · Instituto Tecnológico de Informática — <b>UTU</b></div></div>
+</footer>
+
+</body>
+</html>

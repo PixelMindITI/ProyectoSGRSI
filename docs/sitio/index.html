@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inicio - PixelMind | Proyecto SGRSI - ITI 2026</title>
+<link rel="stylesheet" href="assets/estilo_sitio.css">
+</head>
+<body>
+
+<!-- TOP BARRA -->
+<div id="top-barra">
+    <div class="cont">
+        <span>ITI – UTU · Instituto Tecnológico de Informática · <b class="azienda">Proyecto de Egreso 2026</b></span>
+        <span>Grupo <b>PixelMind</b> · Coordinador: Ivo Figueroa</span>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header id="site-header">
+    <div class="cont top-header">
+        <div class="logo-wrap">
+            <div class="brand">
+                <img src="assets/pixelmind_logo.png" alt="Logo PixelMind">
+                <div class="titles">
+                    <b>SGRSI · PixelMind</b>
+                    <span>Sistema de Gestión de Recursos y Soporte de Informática</span>
+                </div>
+            </div>
+            <div class="buscar">
+                <input type="search" placeholder="Buscar en el sitio del proyecto..." disabled>
+            </div>
+        </div>
+    </div>
+    <div id="nav-wrap">
+        <div class="cont">
+            <ul>
+                <li><a href="index.html" class="activo">Inicio</a></li>
+                <li><a href="ingenieria.html">Ingeniería de Software <span class="caret">■</span></a></li>
+                <li><a href="sistemas.html">Adm. de Sistemas Operativos <span class="caret">■</span></a></li>
+                <li><a href="#entregas">Entregas</a></li>
+                <li><a href="acceso.html">Acceso al sistema</a></li>
+                <li><a href="#grupo">El grupo</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="iti-hero">
+    <div class="cont">
+        <div class="iti-hero-badge"><span class="iti-dot"></span> PIXELMIND · PROYECTO DE EGRESO</div>
+        <h1>Sistema de Gestión de Recursos<br>y Soporte de Informática <span class="text-naranja">SGRSI</span></h1>
+        <p class="lead">Plataforma web que centraliza el inventario de equipos, las incidencias, los préstamos y las solicitudes de servicio del instituto, con control de acceso por roles (RBAC). Proyecto del grupo PixelMind – ITI CETP 2026.</p>
+        <div class="iti-hero-btns">
+            <a href="acceso.html" class="btn-main">Ingresar al sistema</a>
+            <a href="ingenieria.html" class="btn-sec">Ver Ingeniería de Software</a>
+            <a href="sistemas.html" class="btn-sec">Ver Sistemas Operativos</a>
+        </div>
+    </div>
+</section>
+
+<!-- CARTELERAS 2 CAJAS -->
+<section class="iti-news-section">
+    <div class="cont">
+        <div class="iti-news-grid">
+
+            <div class="iti-box-urgent">
+                <div class="iti-badge-status urgent"><span class="dot-urgent"></span> PRIORIDAD ALTA</div>
+                <h2>Próximas<br>entregas</h2>
+                <p>La tercera entrega (calidad, testing, métricas y manuales) es la fecha crítica del plan. Todo desvío del cronograma activa el plan de contingencia R2. Estado actual de las entregas: 1ª y 2ª completadas.</p>
+                <a href="#entregas" class="btn-action-urgent">Ver cronograma <span class="arrow">→</span></a>
+            </div>
+
+            <div class="iti-box-general">
+                <div class="iti-badge-status info">📢 CARTELERA DEL PROYECTO</div>
+                <h2>Avances<br>del equipo</h2>
+                <p>Primera entrega: relevamiento, factibilidades, FODA, requerimientos y planificación. Segunda entrega: validación metodológica, modelo esencial, diseño UML, riesgos, SSH con llaves y respaldos automatizados.</p>
+                <a href="ingenieria.html" class="btn-action-general">Ver avances <span class="arrow">→</span></a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- MÓDULOS -->
+<section class="seccion">
+    <div class="cont" id="entregas">
+        <div class="encabezado-seccion">
+            <div class="etiqueta">LÍNEA DE TIEMPO DEL PROYECTO</div>
+            <h2>Las entregas, entrelazadas</h2>
+            <p>Cada entrega académica coincide con un incremento del sistema. El diseño de la 2ª entrega se construye sobre la especificación de la 1ª: todo lo planificado se valida, se modela y se implementa.</p>
+        </div>
+
+        <ul class="timeline">
+            <li>
+                <div class="fecha">ETAPA 1 · INGRESO DE LA EMPRESA AL ITI</div>
+                <h3>Conformación y reglas internas</h3>
+                <p>Grupo PixelMind; roles funcionales (Coordinador, Sub-coordinador, Integrante); paradigma de conformación y reglas de trabajo definidos en coordinación con tutoría UTULab.</p>
+            </li>
+            <li class="e2">
+                <div class="fecha">PRIMERA ENTREGA · <i>Relevamiento y planificación inicial</i></div>
+                <h3>Qué necesita el instituto y cómo lo construimos</h3>
+                <p>Relevamiento con técnicas de captura de datos, estudio de factibilidades, FODA ponderado, especificación de requerimientos (IEEE 830 / AGESIC), lógica del sistema, modelo de desarrollo incremental y plan con Gantt + CPM/PERT.</p>
+                <p><a class="boton-link" href="../ingenieria/SGRSI_1raEntrega_IS.pdf">Descargar documento de la 1ª entrega (PDF) →</a></p>
+            </li>
+            <li>
+                <div class="fecha">SEGUNDA ENTREGA · <i>Diseño y métricas</i></div>
+                <h3>Validación, modelo esencial, UML y riesgos</h3>
+                <p>Se vuelve sobre la 1ª entrega para validar el modelo de desarrollo, formalizar el diseño con UML (validación metodológica) y gestionar los riesgos. En paralelo, SO: SSH con llaves públicas, estrategia de respaldos 3-2-1 y scripts.</p>
+                <p><a class="boton-link" href="../ingenieria/SGRSI_2daEntrega_PixelMind.pdf">2ª entrega Ingeniería (PDF) →</a> · <a class="boton-link" href="../sistemas_operativos/SGRSI_2daEntrega_SO_APA.pdf">2ª entrega SO (PDF) →</a> · <a class="boton-link" href="../ciberseguridad/SGRSI_2daEntrega_Ciberseguridad.pdf">2ª entrega Ciberseguridad (PDF) →</a></p>
+            </li>
+            <li class="e2">
+                <div class="fecha">TERCERA ENTREGA · <i>Calidad y métricas</i> (plan)</div>
+                <h3>Testing integral y manuales</h3>
+                <p>Incremento 3 del plan: pruebas integrales, métricas de calidad, manuales de usuario y administración. Pendiente de planificar en detalle.</p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- TARJETAS ÁREAS -->
+<section class="seccion seccion-gris">
+    <div class="cont" id="areas">
+        <div class="encabezado-seccion">
+            <div class="etiqueta">UNIDADES CURRICULARES</div>
+            <h2>Dos materias, un solo proyecto</h2>
+            <p>El SGRSI se desarrolla de forma integrada en Ingeniería de Software y Administración de Sistemas Operativos: los artefactos de una entrega alimentan a la otra.</p>
+        </div>
+        <div class="grid-3">
+
+            <div class="tarjeta">
+                <div class="icono">🧭</div>
+                <h3>Ingeniería de Software</h3>
+                <p>De la especificación de requerimientos al diseño UML: modelo esencial, casos de uso, clases, estados, gestión de riesgos y seguimiento con Gantt.</p>
+                <a class="boton-link" href="ingenieria.html">Ir a la página de la materia →</a>
+            </div>
+
+            <div class="tarjeta">
+                <div class="icono">🖥️</div>
+                <h3>Administración de SO</h3>
+                <p>Del relevamiento del sistema operativo a un servidor endurecido: Ubuntu Server, red estática, LAMP, SSH con llaves y respaldos automatizados.</p>
+                <a class="boton-link" href="sistemas.html">Ir a la página de la materia →</a>
+            </div>
+
+            <div class="tarjeta">
+                <div class="icono">🔐</div>
+                <h3>El sistema SGRSI</h3>
+                <p>Aplicación web en PHP + MySQL con arquitectura en tres capas, autenticación RBAC, inventario, tickets, préstamos y solicitudes. Corriendo en XAMPP.</p>
+                <a class="boton-link" href="acceso.html">Acceso al sistema →</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- GRUPO -->
+<section class="seccion">
+    <div class="cont" id="grupo">
+        <div class="encabezado-seccion">
+            <div class="etiqueta">EQUIPO DE TRABAJO</div>
+            <h2>Grupo PixelMind</h2>
+            <p>Integrantes y roles del proyecto, ITI – CETP 2026. Docente: Sindoni, Carina.</p>
+        </div>
+        <div class="grid-3">
+            <div class="tarjeta">
+                <h3>Coordinador</h3>
+                <p><b>Figueroa, Ivo</b><br>Cédula: 5.711.315-1<br>ivofigueroa2169@gmail.com</p>
+            </div>
+            <div class="tarjeta">
+                <h3>Sub-Coordinador</h3>
+                <p><b>Silvera, Bruno</b><br>Cédula: 5.736.659-4<br>bsilvera2008@gmail.com</p>
+            </div>
+            <div class="tarjeta">
+                <h3>Integrante 1</h3>
+                <p><b>Ramirez, Ramiro</b><br>Cédula: 5.791.624-0<br>ramironicolas483@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="site-footer">
+    <div id="footer-principal">
+        <div class="cont" style="display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;">
+            <div>
+                <img src="assets/pixelmind_logo.png" alt="PixelMind" style="height:38px;">
+                <h4 style="margin-top:12px;">PixelMind · SGRSI</h4>
+                <p>Sistema de Gestión de Recursos y Soporte de Informática</p>
+                <p>Proyecto de Egreso · ITI – CETP 2026</p>
+            </div>
+            <div>
+                <h4>Entregas</h4>
+                <p><a href="ingenieria.html">Ingeniería de Software</a></p>
+                <p><a href="sistemas.html">Adm. de Sistemas Operativos</a></p>
+                <p><a href="acceso.html">Acceso al sistema</a></p>
+            </div>
+            <div>
+                <h4>Grupo</h4>
+                <p>Coordinador: Figueroa, Ivo</p>
+                <p>Sub-Coordinador: Silvera, Bruno</p>
+                <p>Integrante 1: Ramirez, Ramiro</p>
+                <p>Docente: Sindoni, Carina</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer-copy">
+        <div class="cont">© 2026 <b>PixelMind</b> · Instituto Tecnológico de Informática — © <b>UTU</b> · Estética inspirada en el portal institucional ITI</div>
+    </div>
+</footer>
+
+<a id="btn-flotante" href="acceso.html">✉ Ingresar a SGRSI</a>
+
+</body>
+</html>

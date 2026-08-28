@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administración de Sistemas Operativos - SGRSI · PixelMind</title>
+<link rel="stylesheet" href="assets/estilo_sitio.css">
+<style>
+    .gantt td { padding:5px 6px; font-size:12px; }
+    .celda-s { min-width:26px; text-align:center; }
+    .barra { height:14px; border-radius:6px; }
+    .hecho { background:#0e9f6e; }
+    .curso { background:#f59e0b; }
+</style>
+</head>
+<body>
+
+<div id="top-barra">
+    <div class="cont">
+        <span>ITI – UTU · Instituto Tecnológico de Informática · <b class="azienda">Proyecto de Egreso 2026</b></span>
+        <span>Grupo <b>PixelMind</b> · Coordinador: Ivo Figueroa</span>
+    </div>
+</div>
+
+<header id="site-header">
+    <div class="cont top-header">
+        <div class="logo-wrap">
+            <div class="brand">
+                <img src="assets/pixelmind_logo.png" alt="Logo PixelMind">
+                <div class="titles"><b>SGRSI · PixelMind</b><span>Sistema de Gestión de Recursos y Soporte de Informática</span></div>
+            </div>
+        </div>
+    </div>
+    <div id="nav-wrap">
+        <div class="cont">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="ingenieria.html">Ingeniería de Software</a></li>
+                <li><a href="sistemas.html" class="activo">Adm. de Sistemas Operativos</a></li>
+                <li><a href="index.html#entregas">Entregas</a></li>
+                <li><a href="acceso.html">Acceso al sistema</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="miga"><div class="cont"><a href="index.html">Inicio</a><span class="sep">›</span>Administración de Sistemas Operativos — <b>Unidad curricular</b></div></div>
+
+<section class="seccion">
+  <div class="cont">
+    <div class="encabezado-seccion">
+      <div class="etiqueta">ADMINISTRACIÓN DE SISTEMAS OPERATIVOS · DOCENTE SINDONI, CARINA</div>
+      <h2>Del servidor recién instalado a un servidor endurecido: un solo hilo</h2>
+      <p>La <b>1ª entrega</b> dejó el servidor de pie: Ubuntu Server 24.04, red estática, pila LAMP y el SGRSI desplegado. La <b>2ª entrega</b> lo administra y lo protege: SSH con llaves, respaldos de largo plazo y scripts de automatización. Esta página las presenta entrelazadas, tal como vive el servidor real.</p>
+    </div>
+
+    <div class="doc">
+      <div class="nota"><b>Hilo conductor:</b> <span class="badge-e badge-e1">1ª ENTREGA</span> instaló y desplegó → <span class="badge-e badge-e2">2ª ENTREGA</span> aseguró el acceso, garantizó la continuidad de datos y dejó la administración automatizada con scripts.</div>
+
+      <h2>Bloque A · <span class="badge-e badge-e1">1ª ENTREGA</span> Relevamiento, instalación y despliegue</h2>
+
+      <h3>A1 · Relevamiento del sistema operativo para el servidor</h3>
+      <p>Antes de instalar, se analizaron alternativas en función de los requerimientos del SGRSI: estabilidad, compatibilidad con la pila tecnológica (Apache, PHP, MariaDB), facilidad de administración y soporte a largo plazo.</p>
+      <table>
+        <tr><th>Distribución</th><th>LTS</th><th>Soporte</th><th>Paquetes</th><th>Uso en servidores</th></tr>
+        <tr><td><b>Ubuntu Server 24.04 LTS</b></td><td>Sí</td><td>5 años</td><td>APT / DEB</td><td><b>Muy alta (seleccionada)</b></td></tr>
+        <tr><td>Debian 12</td><td>Sí</td><td>5 años</td><td>APT / DEB</td><td>Muy alta</td></tr>
+        <tr><td>CentOS Stream 9</td><td>No</td><td>~5 años</td><td>DNF / RPM</td><td>Alta</td></tr>
+        <tr><td>Rocky Linux 9</td><td>Sí</td><td>10 años</td><td>DNF / RPM</td><td>Alta (empresarial)</td></tr>
+      </table>
+      <p>Se seleccionó <b>Ubuntu Server 24.04 LTS</b> por: soporte LTS hasta 2029, amplia documentación en español, repositorios con Apache 2.4 / PHP 8.2 / MariaDB 10.11 (la pila del SGRSI), instalación mínima sin interfaz gráfica y administración con <code>apt</code>, <code>systemctl</code> y <code>ufw</code>.</p>
+      <table>
+        <tr><th>Componente</th><th>Mínimo</th><th>Producción</th></tr>
+        <tr><td>CPU</td><td>1 núcleo / 1 GHz</td><td>2 núcleos / 2 GHz+</td></tr>
+        <tr><td>RAM</td><td>1 GB</td><td>4 GB+</td></tr>
+        <tr><td>Almacenamiento</td><td>10 GB</td><td>50 GB+ SSD</td></tr>
+        <tr><td>Red</td><td>1 interfaz</td><td>1 interfaz Gigabit</td></tr>
+      </table>
+
+      <h3>A2 · Manual de instalación del S.O. servidor</h3>
+      <p>Se documentó el procedimiento completo (12 pasos) para el técnico: descarga y verificación SHA-256 de la ISO, creación del pendrive con Rufus o <code>dd</code>, y la instalación con Subiquity: idioma, teclado, tipo <i>Ubuntu Server</i>, red en DHCP (se fija luego), mirror <code>ubuntu.mirror.edu.uy</code>, particionado (<code>/boot</code> 512MB, <code>swap</code> 2GB, <code>/</code>), perfil <code>sgrsi-admin</code> en host <code>sgrsi-server</code>, instalación de OpenSSH y reinicio. Verificación post-instalación:</p>
+      <pre>lsb_release -a                # versión instalada
+ping -c 4 8.8.8.8             # conectividad
+sudo systemctl status ssh     # servicio SSH
+sudo apt update && sudo apt upgrade -y   # primer mantenimiento</pre>
+
+      <h3>A3 · Instalación y configuración de la red</h3>
+      <p>IP estática con Netplan sobre <code>enp0s3</code> y firewall UFW con solo los puertos necesarios. Los parámetros de red asignados son los que usará la 2ª entrega para el acceso remoto por SSH.</p>
+      <table>
+        <tr><th>Parámetro</th><th>Valor</th><th>Puerto</th><th>Uso</th></tr>
+        <tr><td>Dirección IP</td><td>192.168.1.50/24</td><td>HTTP 80</td><td>Web del SGRSI (Apache)</td></tr>
+        <tr><td>Puerta de enlace</td><td>192.168.1.1</td><td>HTTPS 443</td><td>Cifrado futuro</td></tr>
+        <tr><td>DNS</td><td>8.8.8.8 · 8.8.4.4</td><td>SSH 22</td><td>Acceso remoto</td></tr>
+        <tr><td>Hostname</td><td>sgrsi-server</td><td>MariaDB 3306</td><td>BD (solo local, bloqueado en UFW)</td></tr>
+      </table>
+      <pre>sudo nano /etc/netplan/00-installer-config.yaml   # dhcp4:false, address 192.168.1.50/24
+sudo netplan apply                                  # aplicar red
+sudo ufw enable && sudo ufw allow 22,80,443/tcp     # firewall de servicio</pre>
+
+      <h3>A4 · Gestión y administración de paquetes: pila LAMP y despliegue</h3>
+      <table>
+        <tr><th>Paquete</th><th>Versión</th><th>Propósito</th></tr>
+        <tr><td>apache2</td><td>2.4+</td><td>Servidor web del frontend</td></tr>
+        <tr><td>php + libapache2-mod-php</td><td>8.2+</td><td>Backend (lógica de servidor)</td></tr>
+        <tr><td>php-mysqli · php-mbstring</td><td>8.2+</td><td>Conexión BD y UTF-8</td></tr>
+        <tr><td>mariadb-server</td><td>10.11+</td><td>Base de datos relacional</td></tr>
+        <tr><td>git · curl · unzip · ufw · openssh-server</td><td>—</td><td>Versiones y utilidades del servidor</td></tr>
+      </table>
+      <pre>sudo apt install apache2 mariadb-server php php-mysqli php-mbstring php-xml php-curl libapache2-mod-php -y
+sudo mysql_secure_installation
+sudo mysql -u root -p      # CREATE DATABASE sgrsi_db; CREATE USER 'sgrsi_user'@'localhost';
+cd /var/www/html && sudo git clone &lt;repo&gt; sgrsi
+sudo chown -R www-data:www-data /var/www/html/sgrsi</pre>
+      <div class="enlace-cruzado">🎬 <b>Entrelace con la 2ª entrega:</b> la instalación de OpenSSH (<b>A2</b>, paso 10) que quedó con valores por defecto es exactamente el punto de partida de la sección <b>B1 · SSH con llaves</b>. Y los datos que recién ahora existen en <code>sgrsi_db</code> son lo que se protege en <b>B2 · Respaldo</b>.</div>
+
+      <h2>Bloque B · <span class="badge-e badge-e2">2ª ENTREGA</span> SSH, respaldos y automatización</h2>
+
+      <h3>B1 · Configuración del servicio SSH: llaves públicas <span class="hilo">(endurece el punto de partida de A2/A4)</span></h3>
+      <p>OpenSSH pasó de la instalación por defecto a una configuración endurecida: autenticación por <b>llaves públicas Ed25519</b>, sin contraseñas, y directivas de seguridad sobre <code>sshd_config</code>.</p>
+      <table>
+        <tr><th>Directiva</th><th>Valor</th><th>Justificación</th></tr>
+        <tr><td><code>PermitRootLogin no</code></td><td>no</td><td>Se accede con <code>sgrsi-admin</code> + sudo, nunca como root.</td></tr>
+        <tr><td><code>PubkeyAuthentication yes</code></td><td>yes</td><td>Login por par de llaves (requisito de la rúbrica).</td></tr>
+        <tr><td><code>PasswordAuthentication no</code></td><td>no</td><td>Tras distribuir las llaves: bloquea fuerza bruta.</td></tr>
+        <tr><td><code>AllowUsers sgrsi-admin</code></td><td>lista blanca</td><td>Solo el administrador del SGRSI puede conectarse.</td></tr>
+        <tr><td><code>MaxAuthTries 3 / LoginGraceTime 30</code></td><td>3 / 30 s</td><td>Limita intentos y tiempo de login.</td></tr>
+        <tr><td><code>ClientAliveInterval 300 / ClientAliveCountMax 2</code></td><td>—</td><td>Corta sesiones inactivas (10 min).</td></tr>
+      </table>
+      <pre>sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak   # respaldo previo
+ssh-keygen -t ed25519 -C "sgrsi-admin@pixelmind"          # par de llaves (passphrase)
+ssh-copy-id -i ~/.ssh/id_ed25519.pub sgrsi-admin@192.168.1.50
+sudo sshd -t && sudo systemctl restart ssh                # validar y aplicar
+ssh -i ~/.ssh/id_ed25519 sgrsi-admin@192.168.1.50         # ingresar SIN contraseña</pre>
+      <div class="alerta-doc"><b>Regla de seguridad:</b> no cerrar la sesión activa hasta probar en una segunda terminal que el login por llave funciona; con <code>PasswordAuthentication no</code>, quedarse afuera dejaría el servidor inaccesible.</div>
+
+      <h3>B2 · Medios de respaldo a largo plazo y alta disponibilidad</h3>
+      <p>Se protege todo lo producido en la 1ª entrega (código, configuración y BD) y lo que siga creciendo. Estrategia <b>3-2-1</b>: <i>3 copias de los datos, en 2 medios distintos, 1 fuera del servidor</i>.</p>
+      <table>
+        <tr><th>Tipo</th><th>Medio / destino</th><th>Frecuencia</th><th>Retención</th></tr>
+        <tr><td>Copias completas semanales</td><td>Disco local + NAS institucional</td><td>Semanal</td><td>4 semanas</td></tr>
+        <tr><td>Respaldo mensual</td><td>Medio removible / NAS</td><td>Mensual</td><td>Extendida (año)</td></tr>
+        <tr><td>Sincronización al servidor de respaldo</td><td>Servidor standby (rsync)</td><td>Semanal</td><td>—</td></tr>
+      </table>
+      <p>Rotación <b>Abuelo-Padre-Hijo (GFS)</b>: el respaldo diario («hijo») rota cada 24 h; el semanal («padre») se conserva 1 semana; el mensual («abuelo») se conserva 12 meses. RPO objetivo: pérdida máxima aceptada de 1 día de trabajo; RTO: restauración desde el último dump validado.</p>
+      <div class="enlace-cruzado">🎬 <b>Entrelace:</b> la estrategia da respuesta concreta al riesgo <b>R3 de Ingeniería de Software</b> (pérdida de datos por falla del equipo): no queda en el papel, la implementa SO con dumps MySQL + NAS + standby.</div>
+
+      <h3>B3 · Rutinas de backup y scripts de automatización</h3>
+      <p>Los respaldos se ejecutan automáticamente con <code>cron</code> usando los scripts modulares. Tabla resumen de la planificación en <code>crontab</code>:</p>
+      <table>
+        <tr><th>Horario</th><th>Módulo</th><th>Función</th></tr>
+        <tr><td><code>0 2 * * *</code></td><td>backup_completo.sh</td><td>Dump de BD + copia de archivos → <code>/backup/sgrsi/</code></td></tr>
+        <tr><td><code>0 3 * * 0</code></td><td>rsync a NAS</td><td>Sync semanal <code>rsync -a --delete</code> al respaldo NAS</td></tr>
+        <tr><td><code>0 4 1 * *</code></td><td>respaldo_mensual.sh</td><td>Copia mensual con retención extendida (GFS)</td></tr>
+        <tr><td><code>0 5 * * *</code></td><td>verificar_estado.sh</td><td>Alerta si el último respaldo tiene más de 24 h</td></tr>
+      </table>
+      <p>Cada script escribe en <code>/var/log/sgrsi-backup.log</code> la fecha, el tamaño generado y el resultado; el verificador alerta ante respaldos viejos. Las credenciales viven en un archivo protegido de solo root, no dentro de los scripts.</p>
+
+      <h3>B4 · Primera versión del script modular del servidor <span class="hilo">(administra todo lo desplegado en A4)</span></h3>
+      <p>Kit shell real que acompaña al documento en el repositorio (<code>docs/sistemas_operativos/scripts/</code>), con <b>menú principal</b> <code>sgrsi-admin.sh</code> y módulos independientes ejecutables también por cron: <code>comunes.sh</code> (funciones compartidas), <code>backup_completo.sh</code>, <code>respaldo_mensual.sh</code>, <code>restaurar_bd.sh</code>, <code>verificar_estado.sh</code>, <code>actualizar_sistema.sh</code> y <code>gestion_ssh.sh</code>. Todos validados con <code>bash -n</code>.</p>
+      <table>
+        <tr><th>Módulo</th><th>Qué automatiza</th></tr>
+        <tr><td><code>sgrsi-admin.sh</code></td><td>Menú interactivo de administración del servidor.</td></tr>
+        <tr><td><code>backup_completo.sh</code></td><td>Respaldo completo (BD + archivos) con log.</td></tr>
+        <tr><td><code>respaldo_mensual.sh</code></td><td>Respaldo mensual con retención extendida y rotación GFS.</td></tr>
+        <tr><td><code>restaurar_bd.sh</code></td><td>Restauración del último dump validado (RTO).</td></tr>
+        <tr><td><code>verificar_estado.sh</code></td><td>Estado de servicios y antigüedad de respaldos.</td></tr>
+        <tr><td><code>actualizar_sistema.sh</code></td><td>Rutina segura <code>apt update/upgrade/autoremove</code>.</td></tr>
+        <tr><td><code>gestion_ssh.sh</code></td><td>Respaldo y revisión de configuración SSH.</td></tr>
+      </table>
+
+      <div class="nota"><b>Conclusión del hilo conductor:</b> la 1ª entrega puso el servidor en producción (instalación, red estática y LAMP con el SGRSI desplegado); la 2ª lo blindó —SSH con llaves sin contraseñas—, garantizó su continuidad (respaldos 3-2-1 con rotación GFS) y dejó la administración repetible con scripts modulares programados en cron.</div>
+
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer">
+    <div id="footer-principal">
+        <div class="cont" style="display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;">
+            <div>
+                <img src="assets/pixelmind_logo.png" alt="PixelMind" style="height:38px;">
+                <h4 style="margin-top:12px;">PixelMind · SGRSI</h4>
+                <p>Sistema de Gestión de Recursos y Soporte de Informática</p>
+                <p>Proyecto de Egreso · ITI – CETP 2026</p>
+            </div>
+            <div>
+                <h4>Páginas</h4>
+                <p><a href="index.html">Inicio</a></p>
+                <p><a href="ingenieria.html">Ingeniería de Software</a></p>
+                <p><a href="sistemas.html">Adm. de Sistemas Operativos</a></p>
+            </div>
+            <div>
+                <h4>Grupo</h4>
+                <p>Coordinador: Figueroa, Ivo</p>
+                <p>Sub-Coordinador: Silvera, Bruno</p>
+                <p>Integrante 1: Ramirez, Ramiro</p>
+                <p>Docente: Sindoni, Carina</p>
+            </div>
+        </div>
+    </div>
+    <div id="footer-copy"><div class="cont">© 2026 <b>PixelMind</b> · Instituto Tecnológico de Informática — <b>UTU</b> · Estética inspirada en el portal institucional ITI</div></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>SGRSI · Primera Entrega — Ingeniería de Software</title>
+<style>
+    @page { size: A4; margin: 14mm 13mm 16mm 13mm; }
+    * { box-sizing: border-box; }
+    body { font-family: "Segoe UI", Arial, sans-serif; color: #1d2939; font-size: 11.5px; line-height: 1.5; margin: 0; background: #fff; }
+    .page-break { page-break-before: always; }
+
+    /* ---------- CARÁTULA OFICIAL ---------- */
+    .caratula { text-align: center; padding-top: 12mm; }
+    .caratula .logo { height: 120px; margin-bottom: 6mm; }
+    .caratula .uc { font-size: 15px; color: #002855; margin: 1mm 0 2mm; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .caratula .proyecto { font-size: 24px; color: #1d2939; font-weight: 700; margin-bottom: 1mm; }
+    .caratula .subtitulo { font-size: 12.5px; color: #64748b; margin-bottom: 9mm; }
+    .caratula table { margin: 0 auto; border-collapse: collapse; min-width: 170mm; }
+    .caratula th { background: #002855; color: #fff; padding: 6px 10px; font-size: 11.5px; border: 1px solid #002855; }
+    .caratula td { border: 1px solid #cbd5e1; padding: 6px 10px; font-size: 11.5px; }
+    .caratula .docente { margin-top: 10mm; font-size: 13px; font-weight: 600; color: #334155; }
+    .caratula .entrega { display: inline-block; margin-top: 10mm; background: #002855; color: #fff; padding: 8px 34px; font-size: 16px; font-weight: 700; letter-spacing: 2px; }
+    .caratula .fecha { margin-top: 6mm; font-size: 12px; color: #475569; }
+
+    /* ---------- CUERPO ---------- */
+    .cont { max-width: 178mm; margin: 0 auto; }
+    h1 { font-size: 19px; color: #002855; border-bottom: 3px solid #ff6600; padding-bottom: 5px; margin: 26px 0 10px; }
+    h2 { font-size: 14.5px; color: #002855; margin: 18px 0 8px; border-left: 5px solid #ff6600; padding-left: 8px; }
+    h3 { font-size: 12.5px; color: #1e3a5f; margin: 13px 0 5px; }
+    p { margin: 5px 0; text-align: justify; }
+    table { border-collapse: collapse; width: 100%; margin: 8px 0 14px; font-size: 10.5px; }
+    th { background: #002855; color: #fff; padding: 5px 7px; border: 1px solid #002855; text-align: left; }
+    td { border: 1px solid #cbd5e1; padding: 5px 7px; vertical-align: top; }
+    .even td { background: #f6f9fd; }
+    ul, ol { margin: 4px 0 8px 22px; padding: 0; }
+    li { margin: 3px 0; }
+    code { background: #eef2f7; padding: 0 4px; border-radius: 3px; font-family: Consolas, monospace; font-size: 10.5px; color: #0f172a; }
+    pre { background: #0f172a; color: #dbeafe; border-radius: 6px; padding: 10px 12px; font-family: Consolas, monospace; font-size: 10px; line-height: 1.5; overflow-x: auto; white-space: pre-wrap; }
+    .nota { background: #e0f2fe; border-left: 5px solid #0369a1; padding: 8px 12px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 10.5px; }
+    .hilo { background: #fffbeb; border-left: 5px solid #ff6600; padding: 8px 12px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 10.5px; }
+    .cod { font-weight: 700; color: #002855; white-space: nowrap; }
+
+    /* Gantt */
+    .gantt td, .gantt th { padding: 3px 4px; font-size: 9.5px; text-align: center; }
+    .gantt th:first-child { text-align: left; }
+    .barra { height: 11px; border-radius: 5px; display: block; }
+    .hecho { background: #0e9f6e; }
+    .criti { background: #d97706; }
+    .libre { background: #94a3b8; }
+    .sub { background: #38bdf8; }
+
+    .toc { font-size: 11px; }
+    .toc b { color: #002855; }
+    footer { text-align: center; font-size: 9.5px; color: #94a3b8; margin-top: 14px; border-top: 1px solid #e2e8f0; padding-top: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ==================== CARÁTULA OFICIAL ==================== -->
+<div class="caratula">
+    <img class="logo" src="pixelmind_logo.png" alt="PixelMind">
+    <div class="uc">Ingeniería de Software</div>
+    <div class="proyecto">PixelMind</div>
+    <div class="subtitulo">SGRSI · Sistema de Gestión de Recursos y Soporte de Informática<br>Grupo de proyecto</div>
+    <table>
+        <tr>
+            <th>Rol</th>
+            <th>Apellido</th>
+            <th>Nombre</th>
+            <th>Documento identidad</th>
+            <th>Email</th>
+        </tr>
+        <tr>
+            <td>Coordinador</td>
+            <td>Figueroa</td>
+            <td>Ivo</td>
+            <td>5.711.315-1</td>
+            <td>ivofigueroa2169@gmail.com</td>
+        </tr>
+        <tr>
+            <td>Sub-Coordinador</td>
+            <td>Silvera</td>
+            <td>Bruno</td>
+            <td>5.736.659-4</td>
+            <td>bsilvera2008@gmail.com</td>
+        </tr>
+        <tr>
+            <td>Integrante 1</td>
+            <td>Ramirez</td>
+            <td>Ramiro</td>
+            <td>5.791.624-0</td>
+            <td>ramironicolas483@gmail.com</td>
+        </tr>
+    </table>
+    <div class="docente">Docente: Sindoni, Carina</div>
+    <div class="entrega">PRIMERA ENTREGA</div>
+    <div class="fecha">Fecha de entrega: 22 de junio de 2026 — ITI · CETP</div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================== ÍNDICE ==================== -->
+<div class="cont">
+    <h1>Índice</h1>
+    <div class="toc">
+        <p><b>1 | Relevamiento de datos</b></p>
+        <p>1.1 Técnicas de recolección aplicadas · 1.2 Diseño del formulario de captura · 1.3 Resultados del relevamiento</p>
+        <p><b>2 | Estudio de factibilidades</b></p>
+        <p><b>3 | Análisis F.O.D.A. ponderado del equipo</b></p>
+        <p><b>4 | Especificación de Requerimientos (Estándar IEEE 830)</b></p>
+        <p>4.1 Introducción · 4.2 Descripción general · 4.3 Requerimientos específicos · 4.4 Trazabilidad</p>
+        <p><b>5 | Lógica del sistema: árboles y tablas de decisión</b></p>
+        <p><b>6 | Modelo de desarrollo</b></p>
+        <p><b>7 | Planificación y control del proyecto</b></p>
+        <p>7.1 Reglas internas del grupo · 7.2 Gestión de tareas con Kanban · 7.3 Cronograma (Gantt) · 7.4 Red CPM / PERT</p>
+        <p><b>8 | Gestión de código (Git)</b></p>
+        <p><b>9 | Estructura del sitio del proyecto</b></p>
+        <p>9.1 Inventario de páginas · 9.2 Mapa del sitio · 9.3 Navegabilidad entre módulos</p>
+        <p><b>Referencias</b></p>
+    </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================== 1 RELEVAMIENTO ==================== -->
+<div class="cont">
+    <h1>1 · Relevamiento de datos</h1>
+    <p>El objetivo fue capturar la realidad del instituto en cuanto a la gestión de equipos informáticos, incidencias, préstamos y solicitudes de servicio, para determinar qué datos y procesos debe soportar el sistema SGRSI.</p>
+
+    <h2>1.1 · Técnicas de recolección aplicadas</h2>
+    <table>
+        <tr><th>Técnica</th><th>Instrumento</th><th>Participantes</th><th>Objetivo</th></tr>
+        <tr><td>Entrevista semi-estructurada</td><td>Guía de 12 preguntas</td><td>Personal del laboratorio y referente de soporte</td><td>Comprender el flujo actual: cómo se registran equipos, fallas y préstamos.</td></tr>
+        <tr class="even"><td>Observación directa</td><td>Planilla de campo (no participante)</td><td>Laboratorios de informática</td><td>Verificar en terreno cómo se asignan, mueven y controlan los equipos.</td></tr>
+        <tr><td>Cuestionario</td><td>Formulario diseñado (sección 1.2)</td><td>Docentes y auxiliares</td><td>Cuantificar frecuencia de incidencias, necesidades por laboratorio y prioridades.</td></tr>
+    </table>
+
+    <h2>1.2 · Diseño del formulario específico de captura de datos</h2>
+    <p>Se diseñó un formulario en cinco bloques, ajustado al vocabulario del usuario y probado con dos respondentes antes de difundirlo.</p>
+    <table>
+        <tr><th>Bloque</th><th>Campos</th><th>Para qué se usa</th></tr>
+        <tr><td>A · Datos del encuestado</td><td>Nombre, rol (docente / apoyo), área o laboratorio</td><td>Segmentar respuestas por perfil.</td></tr>
+        <tr class="even"><td>B · Equipamiento</td><td>Cantidad de equipos por laboratorio, sistemas operativos, PCs de escritorio / notebooks, equipos fuera de servicio</td><td>Definir el alcance del módulo de inventario.</td></tr>
+        <tr><td>C · Incidencias</td><td>Tipos habituales (hardware, software, red, impresión), frecuencia semanal estimada, medio actual de reporte</td><td>Dimensionar el módulo de tickets y sus prioridades.</td></tr>
+        <tr class="even"><td>D · Préstamos y solicitudes de servicio</td><td>¿Se prestan equipos? ¿Por cuánto tiempo? ¿Se solicitan servicios (instalación, salas)?</td><td>Modelar préstamos y solicitudes con reglas reales.</td></tr>
+        <tr><td>E · Expectativas</td><td>Prioridades del sistema futuro, funciones deseables, restricciones de uso</td><td>Alimentar la especificación IEEE 830 y el estudio de factibilidad.</td></tr>
+    </table>
+
+    <h2>1.3 · Resultados del relevamiento</h2>
+    <ul>
+        <li><b>Registro manual:</b> el inventario y los reportes de fallas se manejan en planillas y correo; no hay trazabilidad del historial.</li>
+        <li><b>Sin control de disponibilidad:</b> no se conoce en línea si un equipo está prestado o en mantenimiento.</li>
+        <li><b>Pérdida de información:</b> las intervenciones de soporte no quedan registradas; las mismas fallas se re-reportan.</li>
+        <li><b>Actores claros:</b> administración/soporte (gestión) y docentes (reporte y solicitud).</li>
+        <li><b>Prioridad levantada:</b> centralizar en una sola plataforma web el inventario, los tickets y los préstamos, con control de acceso por roles.</li>
+    </ul>
+
+    <div class="hilo"><b>Hilo con la 2ª entrega:</b> estos resultados definen los actores y flujos que la especificación IEEE 830 (sección 4) formaliza como requerimientos, y que el modelo esencial de la 2ª entrega traduce a 13 acontecimientos (A1–A13).</div>
+
+    <!-- ==================== 2 FACTIBILIDAD ==================== -->
+    <h1>2 · Estudio de factibilidades</h1>
+    <table>
+        <tr><th>Factibilidad</th><th>Análisis</th><th>Evidencia</th><th>Veredicto</th></tr>
+        <tr><td>Técnica</td><td>Stack conocido: PHP 8 + MySQL/MariaDB + Bootstrap, arquitectura de 3 capas trabajadas en el curso.</td><td>Prototipo de login y alta de equipo superado en la fase de relevamiento.</td><td><b>Alta</b></td></tr>
+        <tr class="even"><td>Económica</td><td>Software libre sin licencias; XAMPP local y Ubuntu Server en el laboratorio sin costo adicional.</td><td>Presupuesto insumos = $0; costo principal = horas del equipo.</td><td><b>Alta</b></td></tr>
+        <tr><td>Operativa</td><td>Usuarios con perfiles diferenciados; interfaz simple para roles no técnicos.</td><td>Cuestionarios: aceptación de una web única de gestión.</td><td><b>Alta</b></td></tr>
+        <tr class="even"><td>Legal</td><td>Tratamiento de datos personales (cédulas); estándares aplicables del Estado (AGESIC).</td><td>Planilla de datos mínimos; desactivación de usuarios sin borrado físico.</td><td><b>Media</b> — mitigado con RBAC y trazabilidad</td></tr>
+        <tr><td>Temporal</td><td>Tres entregas con plazos fijados por la letra (22-jun, 24-ago y la final).</td><td>Gantt de la sección 7 con holgura; riesgo de carga académica (ver FODA).</td><td><b>Media</b> — gestionada con planificación</td></tr>
+    </table>
+    <div class="nota">Conclusión: el proyecto es factible. Las dimensiones técnica, económica y operativa son favorables; los riegos legal y temporal se mitigan con control de acceso por roles y cronograma con holgura.</div>
+
+    <!-- ==================== 3 FODA ==================== -->
+    <h1>3 · Análisis F.O.D.A. ponderado del equipo</h1>
+    <p>La ponderación (escala 1–5) prioriza los factores que más inciden sobre el éxito del proyecto. Se incluye la estrategia adoptada para potenciar o contener cada factor.</p>
+    <table>
+        <tr><th>Fortalezas</th><th style="width:60px">Peso</th><th>Estrategia</th></tr>
+        <tr><td>Dominio claro del stack LAMP y del modelo incremental.</td><td style="text-align:center">5</td><td rowspan="2">Concentrar el esfuerzo técnico en los módulos núcleo (inventario y tickets) donde el equipo ya demuestra capacidad.</td></tr>
+        <tr class="even"><td>Equipo estable y comunicado desde la 1ª entrega.</td><td style="text-align:center">4</td></tr>
+        <tr><th>Debilidades</th><th>Peso</th><th>Estrategia</th></tr>
+        <tr><td>Poca experiencia en endurecimiento de seguridad.</td><td style="text-align:center">4</td><td rowspan="2">Tratar la seguridad como riesgo formal del proyecto y destinar una sesión de revisión por módulo (ASIGNACIÓN a la 2ª entrega).</td></tr>
+        <tr class="even"><td>Tiempo limitado por carga académica paralela (exámenes).</td><td style="text-align:center">3</td></tr>
+        <tr><th>Oportunidades</th><th>Peso</th><th>Estrategia</th></tr>
+        <tr><td>Software libre + soporte institucional (tutoría UTULab).</td><td style="text-align:center">5</td><td rowspan="2">Usar la tutoría para validar Kanban y la red CPM/PERT antes de cada entrega.</td></tr>
+        <tr class="even"><td>Plataforma web accesible desde cualquier equipo del instituto.</td><td style="text-align:center">3</td></tr>
+        <tr><th>Amenazas</th><th>Peso</th><th>Estrategia</th></tr>
+        <tr><td>Sobre-alcance: agregar funciones fuera de la letra.</td><td style="text-align:center">4</td><td rowspan="2">Definir el criterio de «terminado» por incremento y diferir mejoras al backlog de la 3ª entrega.</td></tr>
+        <tr class="even"><td>Disponibilidad del laboratorio para demostraciones.</td><td style="text-align:center">3</td></tr>
+    </table>
+    <div class="hilo"><b>Hilo con la 2ª entrega:</b> las debilidades y amenazas de mayor peso (seguridad, sobre-alcance, disponibilidad) se convierten en los riesgos R5, R7 y R8 del registro de riesgos con su plan de contingencia.</div>
+
+    <!-- ==================== 4 IEEE 830 ==================== -->
+    <h1>4 · Especificación de Requerimientos (Estándar IEEE 830)</h1>
+
+    <h2>4.1 · Introducción</h2>
+    <h3>4.1.1 · Propósito</h3>
+    <p>Este documento especifica los requerimientos funcionales y no funcionales del <b>SGRSI — Sistema de Gestión de Recursos y Soporte de Informática</b> del ITI (Instituto Tecnológico de Informática) de la UTU. Ha sido elaborado conforme al estándar <b>IEEE Std 830-1998</b> y alineado al modelo propuesto por <b>AGESIC</b> para sistemas del Estado. Será la base común para el diseño (2ª entrega), la implementación y las pruebas (3ª entrega).</p>
+    <h3>4.1.2 · Ámbito del sistema</h3>
+    <p>El SGRSI centralizará en una plataforma web: (a) el inventario de equipos informáticos del instituto con su estado e historial, (b) el reporte y seguimiento de incidencias (tickets) con prioridades, (c) el registro de préstamos de equipos con control de disponibilidad y fechas límite, (d) las solicitudes de servicio, y (e) la administración de usuarios con control de acceso por roles. Queda <b>fuera de alcance</b>: gestión económica/financiera, reportería avanzada de BI y facturación. Los beneficiarios son docentes, auxiliares de laboratorio, el personal de soporte y la administración del instituto.</p>
+    <h3>4.1.3 · Definiciones y acrónimos</h3>
+    <table>
+        <tr><th>Término</th><th>Definición</th></tr>
+        <tr><td>SGRSI</td><td>Sistema de Gestión de Recursos y Soporte de Informática.</td></tr>
+        <tr class="even"><td>RBAC</td><td><i>Role-Based Access Control</i>: control de acceso basado en roles.</td></tr>
+        <tr><td>Ticket / Incidencia</td><td>Reporte de una falla o necesidad de soporte que se atiende con estado propio.</td></tr>
+        <tr class="even"><td>Préstamo</td><td>Asignación temporal de un equipo a un solicitante con fecha límite de devolución.</td></tr>
+        <tr><td>Solicitud de servicio</td><td>Pedido de instalación o servicio con tipo, laboratorio y fecha de necesidad.</td></tr>
+        <tr class="even"><td>Entorno local / producción</td><td>Despliegue en XAMPP (desarrollo) y en Ubuntu Server (institucional).</td></tr>
+    </table>
+    <h3>4.1.4 · Referencias</h3>
+    <ul>
+        <li>IEEE Std 830-1998: <i>Recommended Practice for Software Requirements Specifications</i>.</li>
+        <li>AGESIC: Guía para la elaboración de requerimientos y estándares de software del Estado.</li>
+        <li>Sommerville, I. (2011). <i>Software Engineering</i>, 9ª ed.</li>
+        <li>Letra del proyecto ITI 2026 — UTU CETP (documento interno).</li>
+    </ul>
+    <h3>4.1.5 · Resumen</h3>
+    <p>La sección 4.2 describe el producto y su entorno; la 4.3 detalla los requerimientos funcionales y no funcionales; la 4.4 presenta la trazabilidad con los acontecimientos que la 2ª entrega formalizará.</p>
+
+    <h2>4.2 · Descripción general</h2>
+    <h3>4.2.1 · Perspectiva del producto</h3>
+    <p>El SGRSI es un sistema nuevo, autónomo e independiente. Se despliega en el servidor del instituto y se accede por navegador desde cualquier equipo de la red. Sustituye parcialmente a las planillas manuales y al correo como medio de reporte.</p>
+    <h3>4.2.2 · Funciones generales del producto</h3>
+    <ul>
+        <li>Autenticación segura y sesiones con tiempo de inactividad.</li>
+        <li>Gestión de inventario de equipos con estados y trazabilidad (alta, edición, cambio de estado, baja).</li>
+        <li>Gestión de incidencias: creación con prioridad, asignación, intervenciones e historial y cierre con nota.</li>
+        <li>Gestión de préstamos: disponibilidad, fecha límite, vencimientos y devolución.</li>
+        <li>Gestión de solicitudes de servicio con respuesta obligatoria.</li>
+        <li>Administración de usuarios y roles con desactivación que preserva el historial.</li>
+        <li>Interfaz en español e inglés seleccionable.</li>
+    </ul>
+    <h3>4.2.3 · Características de los usuarios</h3>
+    <table>
+        <tr><th>Perfil</th><th>Formación</th><th>Necesidad</th></tr>
+        <tr><td>Administrador</td><td>Auxiliar de administración</td><td>Gestionar usuarios, roles y datos maestros.</td></tr>
+        <tr class="even"><td>Soporte técnico</td><td>Técnico informático</td><td>Inventario, tickets, préstamos y solicitudes de servicio.</td></tr>
+        <tr><td>Solicitante (docente)</td><td>Docente / auxiliar</td><td>Reportar incidencias, pedir préstamos y solicitudes de servicio.</td></tr>
+    </table>
+    <h3>4.2.4 · Restricciones</h3>
+    <ul>
+        <li>Plataforma web compatible con los navegadores del instituto (Chrome, Edge, Firefox).</li>
+        <li>Despliegue sobre XAMPP (desarrollo) y Ubuntu Server (producción), sin cambios de código.</li>
+        <li>Base de datos relacional normalizada en 3FN.</li>
+        <li>Cumplimiento de buenas prácticas de acceso a datos del Estado (AGESIC).</li>
+    </ul>
+    <h3>4.2.5 · Supuestos y dependencias</h3>
+    <ul>
+        <li>Existencia de un servidor disponible en el laboratorio (supuesto validado con el SO — 1ª entrega de SO).</li>
+        <li>Los usuarios cuentan con credenciales institucionales o se registran con email único.</li>
+        <li>Las fechas de entrega de la letra se mantienen sin cambios.</li>
+    </ul>
+
+    <h2>4.3 · Requerimientos específicos</h2>
+    <h3>4.3.1 · Interfaces externas</h3>
+    <table>
+        <tr><th>Tipo</th><th>Requerimiento</th></tr>
+        <tr><td>Usuario</td><td>Interfaz web responsive en español (por defecto) e inglés; navegación por módulos acorde al rol.</td></tr>
+        <tr class="even"><td>Hardware</td><td>Acceso desde PC de escritorio y portátiles del instituto; sin hardware específico.</td></tr>
+        <tr><td>Software</td><td>Navegador moderno; servidor Apache + PHP 8; base de datos MariaDB/MySQL.</td></tr>
+        <tr class="even"><td>Comunicaciones</td><td>Red local del instituto; protocolo HTTP; la BD no se expone fuera del servidor.</td></tr>
+    </table>
+
+    <h3>4.3.2 · Requerimientos funcionales</h3>
+    <table>
+        <tr><th>Código</th><th>Requerimiento</th><th>Prioridad</th></tr>
+        <tr><td class="cod">RF-01</td><td>El sistema debe permitir iniciar sesión con email y contraseña, validando contra hash bcrypt.</td><td>Alta</td></tr>
+        <tr class="even"><td class="cod">RF-02</td><td>Al autenticarse, debe abrir la sesión con el rol correspondiente y mostrar el menú acorde.</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-03</td><td>Ante credenciales inválidas debe rechazar con mensaje genérico, sin revelar cuál dato falló.</td><td>Alta</td></tr>
+        <tr class="even"><td class="cod">RF-04</td><td>Debe permitir el cierre de sesión y forzar la salida tras un tiempo de inactividad configurable.</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-05</td><td>Debe permitir el auto-registro de una cuenta con rol «solicitante», validando email único y contraseña segura.</td><td>Alta</td></tr>
+        <tr class="even"><td class="cod">RF-06</td><td>Debe permitir al administrador dar de alta usuarios asignando rol (administrador, soporte, solicitante).</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-07</td><td>Debe permitir al administrador editar datos de usuarios y cambiar su rol.</td><td>Media</td></tr>
+        <tr class="even"><td class="cod">RF-08</td><td>Debe permitir desactivar un usuario conservando su historial (sin borrado físico).</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-09</td><td>Debe impedir el acceso a funciones de un módulo si el rol del usuario no lo habilita (RBAC).</td><td>Alta</td></tr>
+        <tr class="even"><td class="cod">RF-10</td><td>Debe permitir al soporte dar de alta un equipo generando código, tipo, marca, modelo y serie.</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-11</td><td>El equipo nuevo debe quedar en estado inicial «disponible».</td><td>Alta</td></tr>
+        <tr class="even"><td class="cod">RF-12</td><td>Debe permitir editar los datos de un equipo y ver su detalle completo.</td><td>Media</td></tr>
+        <tr><td class="cod">RF-13</td><td>Debe permitir cambiar el estado de un equipo (disponible, prestado, en mantenimiento, baja).</td><td>Alta</td></tr>
+        <tr class="even"><td class="cod">RF-14</td><td>Al dar de baja un equipo con prestamo activo, debe cerrar la asignación y registrar la trazabilidad.</td><td>Media</td></tr>
+        <tr><td class="cod">RF-15</td><td>Debe consultar el inventario con filtros (estado, tipo, laboratorio) y permitir exportar un listado simple.</td><td>Media</td></tr>
+        <tr class="even"><td class="cod">RF-16</td><td>Debe permitir al solicitante reportar una incidencia con título, descripción, prioridad y equipo opcional.</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-17</td><td>La incidencia debe crearse en estado «pendiente» y quedar en la cola visible para soporte.</td><td>Alta</td></tr>
+        <tr class="even"><td class="cod">RF-18</td><td>Debe permitir al soporte tomar un ticket y pasarlo a «en proceso», asignando el técnico responsable.</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-19</td><td>Debe registrar cada intervención con texto, fecha/hora y autor, formando un historial por ticket.</td><td>Alta</td></tr>
+        <tr class="even"><td class="cod">RF-20</td><td>Para cerrar un ticket debe exigirse una nota de resolución; registra fecha y hora de cierre.</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-21</td><td>Debe filtrar y listar tickets por estado, prioridad y responsable.</td><td>Media</td></tr>
+        <tr class="even"><td class="cod">RF-22</td><td>Debe permitir registrar un préstamo verificando disponibilidad y plazos según la regla de la sección 5.</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-23</td><td>El préstamo aprobado debe pasar el equipo a «prestado» con fecha límite de devolución.</td><td>Alta</td></tr>
+        <tr class="even"><td class="cod">RF-24</td><td>Al vencer la fecha límite, el préstamo debe pasar a «vencido» y mostrarse como alerta para soporte.</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-25</td><td>Debe registrar la devolución devolviendo el equipo a «disponible» con fecha real.</td><td>Alta</td></tr>
+        <tr class="even"><td class="cod">RF-26</td><td>Debe rechazar un préstamo con justificación cuando no se cumplan las condiciones de la regla A5.</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-27</td><td>Debe permitir al solicitante crear una solicitud de servicio con tipo, laboratorio y fecha de necesidad.</td><td>Alta</td></tr>
+        <tr class="even"><td class="cod">RF-28</td><td>La solicitud debe crearse en estado «pendiente» y quedar disponible para soporte/administración.</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-29</td><td>Debe permitir atender la solicitud pasándola a «en proceso».</td><td>Media</td></tr>
+        <tr class="even"><td class="cod">RF-30</td><td>El cierre de la solicitud debe exigir una respuesta obligatoria; no se acepta cierre vacío.</td><td>Alta</td></tr>
+        <tr><td class="cod">RF-31</td><td>Debe listar y filtrar solicitudes por estado y laboratorio.</td><td>Media</td></tr>
+        <tr class="even"><td class="cod">RF-32</td><td>Debe ofrecer el idioma de la interfaz (es–es / en) seleccionable y persistente.</td><td>Media</td></tr>
+        <tr><td class="cod">RF-33</td><td>Debe permitir al usuario editar sus datos de perfil y cambiar su propia contraseña previa verificación.</td><td>Media</td></tr>
+        <tr class="even"><td class="cod">RF-34</td><td>Debe mostrar paneles/resúmenes de métricas básicas por rol (equipos, tickets abiertos, préstamos vencidos).</td><td>Media</td></tr>
+    </table>
+
+    <h3>4.3.3 · Requerimientos de rendimiento</h3>
+    <table>
+        <tr><th>Código</th><th>Requerimiento</th></tr>
+        <tr><td class="cod">RFD-01</td><td>El tiempo de respuesta de las páginas principales debe ser inferior a 2 s en la red del instituto.</td></tr>
+        <tr class="even"><td class="cod">RFD-02</td><td>El sistema debe soportar al menos 40 usuarios concurrentes sin degradación perceptible.</td></tr>
+        <tr><td class="cod">RFD-03</td><td>Las consultas de inventario y de tickets deben paginarse para volúmenes superiores a 500 registros.</td></tr>
+    </table>
+
+    <h3>4.3.4 · Restricciones de diseño</h3>
+    <ul>
+        <li>Arquitectura en 3 capas (presentación, lógica, datos) sin acceso directo de la vista a la BD.</li>
+        <li>Esquema relacional normalizado (3FN) versionado en <code>ddl.sql</code>/<code>dml.sql</code>.</li>
+        <li>Todo el código bajo control de versiones Git (sección 8).</li>
+    </ul>
+
+    <h3>4.3.5 · Atributos de calidad del software</h3>
+    <table>
+        <tr><th>Atributo</th><th>Criterio</th></tr>
+        <tr><td>Seguridad</td><td>Hash bcrypt, sentencias preparadas, sanitización de salida, tokens CSRF, RBAC.</td></tr>
+        <tr class="even"><td>Usabilidad</td><td>Interfaz consistente, mensajes claros y navegación por módulos acorde al rol.</td></tr>
+        <tr><td>Portabilidad</td><td>Mismo código entre XAMPP y Ubuntu Server; un solo <code>config</code>.</td></tr>
+        <tr class="even"><td>Mantenibilidad</td><td>Código comentado donde aporta, funciones reutilizables y convención de nombres.</td></tr>
+        <tr><td>Disponibilidad</td><td>Respaldos periódicos y restauración validada (se aborda en SO — 2ª entrega).</td></tr>
+    </table>
+
+    <h2>4.4 · Trazabilidad</h2>
+    <p>Los requerimientos funcionales se trazan con los acontecimientos del modelo esencial que la 2ª entrega formaliza y con los casos de uso (CU-01 a CU-06).</p>
+    <table>
+        <tr><th>Grupo de requerimientos</th><th>Acontecimientos (2ª entrega)</th><th>Casos de uso</th></tr>
+        <tr><td>RF-01..RF-09 (cuentas y acceso)</td><td>A1, A2, A12, A13</td><td>CU-01</td></tr>
+        <tr class="even"><td>RF-10..RF-15 (inventario)</td><td>A3, A4</td><td>—</td></tr>
+        <tr><td>RF-16..RF-21 (incidencias)</td><td>A7, A8, A9</td><td>CU-02, CU-03</td></tr>
+        <tr class="even"><td>RF-22..RF-26 (préstamos)</td><td>A5, A6, A4</td><td>CU-04</td></tr>
+        <tr><td>RF-27..RF-31 (solicitudes)</td><td>A10, A11</td><td>CU-05, CU-06</td></tr>
+    </table>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================== 5 LÓGICA ==================== -->
+<div class="cont">
+    <h1>5 · Lógica del sistema: árboles y tablas de decisión</h1>
+    <p>Para los procesos críticos se modeló la lógica con árbol y tabla de decisión, técnica exigida para verificar completitud y consistencia antes de implementar.</p>
+
+    <h2>5.1 · Árbol de decisión — Registro de préstamo (regla A5)</h2>
+    <pre>¿El equipo está disponible? ──no──▶ Rechazar (sugerir reserva)
+└─ sí ──¿El solicitante está acreditado (rol o registro válido)? ──no──▶ Rechazar
+        └─ sí ──¿Devolución dentro del plazo máximo del instituto? ──no──▶ Rechazar
+               └─ sí ──▶ Crear préstamo activo y marcar equipo "prestado"</pre>
+
+    <h2>5.2 · Tabla de decisión — Registro de préstamo</h2>
+    <table>
+        <tr><th>Condición \ Regla</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th></tr>
+        <tr><td>C1: Equipo disponible</td><td>Sí</td><td>Sí</td><td>Sí</td><td>No</td></tr>
+        <tr class="even"><td>C2: Solicitante acreditado</td><td>Sí</td><td>Sí</td><td>No</td><td>—</td></tr>
+        <tr><td>C3: Devolución dentro de plazo</td><td>Sí</td><td>No</td><td>—</td><td>—</td></tr>
+        <tr class="even"><td><b>A1:</b> Crear préstamo activo</td><td><b>X</b></td><td></td><td></td><td></td></tr>
+        <tr><td><b>A2:</b> Rechazar</td><td></td><td><b>X</b></td><td><b>X</b></td><td><b>X</b></td></tr>
+    </table>
+
+    <h2>5.3 · Tabla de decisión — Prioridad de incidencia</h2>
+    <table>
+        <tr><th>Condición \ Regla</th><th>R1</th><th>R2</th><th>R3</th><th>R4</th><th>R5</th></tr>
+        <tr><td>C1: Bloquea actividad académica</td><td>Sí</td><td>Sí</td><td>No</td><td>No</td><td>No</td></tr>
+        <tr class="even"><td>C2: Afecta laboratorio completo</td><td>Sí</td><td>No</td><td>No</td><td>No</td><td>—</td></tr>
+        <tr><td>C3: Hay equipo alternativo</td><td>—</td><td>No</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr class="even"><td><b>A1:</b> Prioridad Crítica</td><td><b>X</b></td><td><b>X</b></td><td></td><td></td><td></td></tr>
+        <tr><td><b>A2:</b> Prioridad Alta</td><td></td><td></td><td><b>X</b></td><td></td><td></td></tr>
+        <tr class="even"><td><b>A3:</b> Prioridad Normal</td><td></td><td></td><td></td><td><b>X</b></td><td><b>X</b></td></tr>
+    </table>
+    <div class="nota">Ambas tablas se implementaron con las validaciones del módulo correspondiente y su efecto se observa en los acontecimientos A5/A7 de la 2ª entrega.</div>
+
+    <h1>6 · Modelo de desarrollo</h1>
+    <p>Se seleccionó el <b>modelo de desarrollo incremental</b> (ciclo de vida tradicional), basado en que cada entrega académica coincide con un incremento funcional evaluable y realizable.</p>
+    <table>
+        <tr><th>Incremento</th><th>Alcance</th><th>Entrega</th></tr>
+        <tr><td>Incremento 1</td><td>Login, RBAC, usuarios, inventario de equipos.</td><td>2ª entrega (con diseño completo)</td></tr>
+        <tr class="even"><td>Incremento 2</td><td>Incidencias (tickets), préstamos, solicitudes de servicio.</td><td>2ª entrega (con diseño completo)</td></tr>
+        <tr><td>Incremento 3</td><td>Testing integral, métricas de calidad, manuales de usuario y administración.</td><td>3ª entrega</td></tr>
+    </table>
+    <p>La elección se fundamenta en: requisitos estables por incremento (letra), entregas operativas tempranas, equipo pequeño que evita procesos pesados de cascada/RUP, y la arquitectura de 3 capas estable desde el inicio que mitiga el riesgo de degradación. Se documenta formalmente en la «Validación metodológica» de la 2ª entrega.</p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================== 7 PLANIFICACIÓN ==================== -->
+<div class="cont">
+    <h1>7 · Planificación y control del proyecto</h1>
+
+    <h2>7.1 · Reglas internas del grupo</h2>
+    <ul>
+        <li><b>Roles fijos:</b> Coordinador (Ivo Figueroa), Sub-Coordinador (Bruno Silvera), Integrante (Ramiro Ramirez) + matriz de responsabilidades por módulo.</li>
+        <li><b>Reunión semanal</b> de avance con orden del día y acta breve en el repo.</li>
+        <li><b>Git:</b> todo trabajo con commit convencional; revisión por pares antes de integrar a la rama principal (sección 8).</li>
+        <li><b>Definición de «terminado»</b> por incremento según la letra; el backlog de mejoras queda diferido.</li>
+    </ul>
+
+    <h2>7.2 · Gestión de tareas con Kanban</h2>
+    <table>
+        <tr><th>Backlog</th><th>Por hacer</th><th>En curso</th><th>En revisión</th><th>Hecho</th></tr>
+        <tr><td>Filtros por estado en listas</td><td>Exportar listado simple</td><td>Tickets: prioridades</td><td>Login + RBAC</td><td>Relevamiento, formulario</td></tr>
+        <tr class="even"><td>i18n ES/EN</td><td>Préstamos: devolución</td><td>Inventario: estados</td><td>Perfil de usuario</td><td>Factibilidades, FODA</td></tr>
+    </table>
+    <p>El tablero se mantiene actualizado en cada reunión semanal y refleja el estado real del Gantt.</p>
+
+    <h2>7.3 · Cronograma (Gantt) de la 1ª entrega</h2>
+    <table class="gantt">
+        <tr><th>Actividad</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S5</th><th>S6</th><th>S7</th><th>S8</th></tr>
+        <tr><td>A · Relevamiento y formularios</td><td><span class="barra hecho"></span></td><td><span class="barra hecho"></span></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="even"><td>B · Factibilidades + FODA</td><td></td><td><span class="barra hecho"></span></td><td><span class="barra hecho"></span></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>C · Especificación IEEE 830</td><td></td><td></td><td><span class="barra crítico"></span></td><td><span class="barra crítico"></span></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="even"><td>D · Lógica del sistema</td><td></td><td></td><td></td><td><span class="barra crítico"></span></td><td colspan="4"></td></tr>
+        <tr><td>E · Modelo de desarrollo</td><td></td><td></td><td></td><td></td><td><span class="barra libre"></span></td><td colspan="3"></td></tr>
+        <tr class="even"><td>F · Planificación (Kanban/Gantt/CPM)</td><td></td><td></td><td></td><td></td><td><span class="barra crítico"></span></td><td colspan="3"></td></tr>
+        <tr><td>G · Gestión de código Git (paralela)</td><td></td><td><span class="barra sub"></span></td><td><span class="barra sub"></span></td><td><span class="barra sub"></span></td><td><span class="barra sub"></span></td><td><span class="barra sub"></span></td><td><span class="barra sub"></span></td><td><span class="barra sub"></span></td></tr>
+        <tr class="even"><td>H · Entrega y cierre</td><td colspan="7"></td><td><span class="barra crítico"></span></td></tr>
+    </table>
+
+    <h2>7.4 · Red CPM / PERT</h2>
+    <p>Se modela la red de actividades con sus precedencias para identificar el <b>camino crítico</b> y las <b>holguras</b>. Duración en semanas; proyecto: 7,5 semanas.</p>
+    <table>
+        <tr><th>Actividad</th><th>Predecesoras</th><th>Duración</th><th>ES</th><th>EF</th><th>LS</th><th>LF</th><th>Holgura</th><th>Camino crítico</th></tr>
+        <tr><td>A · Relevamiento</td><td>—</td><td>2</td><td>0</td><td>2</td><td>0</td><td>2</td><td>0</td><td>◆</td></tr>
+        <tr class="even"><td>B · Factibilidades + FODA</td><td>A</td><td>1</td><td>2</td><td>3</td><td>2</td><td>3</td><td>0</td><td>◆</td></tr>
+        <tr><td>C · Especificación IEEE 830</td><td>B</td><td>2</td><td>3</td><td>5</td><td>3</td><td>5</td><td>0</td><td>◆</td></tr>
+        <tr class="even"><td>D · Lógica del sistema</td><td>C</td><td>1</td><td>5</td><td>6</td><td>5</td><td>6</td><td>0</td><td>◆</td></tr>
+        <tr><td>E · Modelo de desarrollo</td><td>C</td><td>1</td><td>5</td><td>6</td><td>6,5</td><td>7,5</td><td>1,5</td><td></td></tr>
+        <tr class="even"><td>F · Planificación</td><td>D</td><td>1</td><td>6</td><td>7</td><td>6</td><td>7</td><td>0</td><td>◆</td></tr>
+        <tr><td>G · Gestión de código Git</td><td>A</td><td>1</td><td>2</td><td>3</td><td>6,5</td><td>7,5</td><td>4,5</td><td></td></tr>
+        <tr class="even"><td>H · Cierre y entrega</td><td>F, E, G</td><td>0,5</td><td>7</td><td>7,5</td><td>7</td><td>7,5</td><td>0</td><td>◆</td></tr>
+    </table>
+    <p><b>Camino crítico:</b> A → B → C → D → F → H (7,5 semanas). Las actividades E (1,5) y G (4,5) tienen holgura y absorben desvíos sin retrasar la entrega. La holgura calculada aquí es la que la 2ª entrega aprovecha en el Gantt del segundo incremento.</p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================== 8 GIT ==================== -->
+<div class="cont">
+    <h1>8 · Gestión de código (Git)</h1>
+    <p>El proyecto se versiona en un repositorio Git remoto privado. La estrategia mantiene una rama principal siempre estable.</p>
+    <table>
+        <tr><th>Aspecto</th><th>Práctica</th></tr>
+        <tr><td>Ramas</td><td><code>main</code> (estable) y ramas de módulo <code>feature/&lt;modulo&gt;</code> por integrante.</td></tr>
+        <tr class="even"><td>Mensajes</td><td>Commits convencionales: <code>feat:</code>, <code>fix:</code>, <code>docs:</code>, <code>refactor:</code>.</td></tr>
+        <tr><td>Integración</td><td>Revisión por pares (pull request) antes de integrar a <code>main</code>.</td></tr>
+        <tr class="even"><td>Base de datos</td><td><code>ddl.sql</code> y <code>dml.sql</code> versionados como única fuente del esquema.</td></tr>
+        <tr><td>Reglas</td><td>No commitear credenciales; un <code>.gitignore</code> excluye config y archivos locales.</td></tr>
+    </table>
+    <pre>git flow:  main ─── merge ───&gt; integración estable
+   feature/login       feat: autenticación por hash bcrypt
+   feature/inventario  feat: alta y estados de equipos
+   feature/tickets     feat: cola e intervenciones de incidencias</pre>
+
+    <div class="page-break"></div>
+
+<!-- ==================== 9 ESTRUCTURA DEL SITIO ==================== -->
+<div class="cont">
+    <h1>9 · Estructura del sitio del proyecto</h1>
+    <p>Como plantea la guía de la materia, la herramienta web no se construye página por página de forma aislada: primero se decide <i>quién usa el sistema</i>, <i>qué necesita hacer</i>, <i>qué páginas requiere</i> y <i>cómo se organizan</i>. De ese análisis surgen el inventario de páginas y el mapa del sitio que se implementan en el SGRSI.</p>
+
+    <h2>9.1 · Inventario de páginas</h2>
+    <p>Páginas generales, comunes a todos los roles:</p>
+    <table>
+        <tr><th>Página</th><th>Función</th></tr>
+        <tr><td>Login</td><td>Autenticación con email y contraseña; control de acceso por roles (RBAC).</td></tr>
+        <tr class="even"><td>Inicio / Dashboard</td><td>Panel de bienvenida con accesos a los módulos habilitados y resúmenes por rol.</td></tr>
+        <tr><td>Mi perfil</td><td>Edición de datos propios y cambio de contraseña previa verificación.</td></tr>
+        <tr class="even"><td>Cerrar sesión</td><td>Salida segura y expiración por inactividad.</td></tr>
+    </table>
+    <p>Inventario de páginas por rol (según la guía «De las pantallas aisladas a los flujos, actores, módulos»):</p>
+    <table>
+        <tr><th>Módulo</th><th>Administrador</th><th>Técnico / Soporte</th><th>Solicitante</th></tr>
+        <tr><td>Inventario</td><td>Listado · Alta · Detalle · Edición</td><td>Listado · Alta · Detalle · Edición</td><td>—</td></tr>
+        <tr class="even"><td>Préstamos</td><td>Listado · Nuevo · Devolución</td><td>Listado · Nuevo · Devolución</td><td>—</td></tr>
+        <tr><td>Incidencias (Mesa de ayuda)</td><td>Listado · Detalle · Atención</td><td>Listado · Detalle · Intervención · Cierre</td><td>Listado (propias) · Nuevo ticket</td></tr>
+        <tr class="even"><td>Solicitudes de servicio</td><td>Listado · Detalle · Atención</td><td>Listado · Detalle · Atención</td><td>Listado (propias) · Nueva solicitud</td></tr>
+        <tr><td>Usuarios</td><td>Listado · Alta · Edición · Desactivación</td><td>—</td><td>—</td></tr>
+        <tr class="even"><td>Toma de decisiones</td><td>Dashboard de métricas y reportes</td><td>Dashboard de métricas y reportes</td><td>—</td></tr>
+    </table>
+
+    <h2>9.2 · Mapa del sitio</h2>
+    <p>El mapa condensa la navegación del sistema. Cada rol «ve» únicamente la rama que le corresponde (RBAC), aunque la estructura completa es esta:</p>
+    <pre>Login
+└─ Inicio / Dashboard
+   ├─ Inventario
+   │   ├─ Listado de equipos
+   │   ├─ Alta de equipo
+   │   └─ Detalle · Edición de equipo
+   ├─ Préstamos
+   │   ├─ Listado de préstamos
+   │   ├─ Nuevo préstamo
+   │   └─ Devolución
+   ├─ Incidencias (Mesa de ayuda)
+   │   ├─ Listado de tickets
+   │   ├─ Nuevo ticket
+   │   └─ Detalle de ticket (intervenciones · cierre)
+   ├─ Solicitudes de servicio
+   │   ├─ Listado
+   │   ├─ Nueva solicitud
+   │   └─ Detalle · Atención
+   ├─ Usuarios (Administrador)
+   │   ├─ Listado
+   │   ├─ Alta
+   │   └─ Edición · Desactivación
+   ├─ Toma de decisiones
+   │   └─ Dashboard de métricas y reportes
+   └─ Mi perfil / Cerrar sesión</pre>
+
+    <h2>9.3 · Navegabilidad entre los principales módulos</h2>
+    <ul>
+        <li><b>Acceso único:</b> toda entrada al sistema pasa por el login; cada rol llega a su Dashboard desde el cual se accede a los módulos habilitados (no hay pantallas aisladas).</li>
+        <li><b>Menú principal persistente</b> con los módulos del rol y página activa resaltada.</li>
+        <li><b>Enlaces cruzados</b> entre módulos: desde un ticket se accede al equipo asociado y su historial; desde un préstamo se consulta el estado del equipo.</li>
+        <li><b>Acceso directo controlado:</b> las rutas no autorizadas responden HTTP 403, preservando la navegación oficial.</li>
+        <li><b>Vista móvil:</b> navegación responsive desde cualquier equipo de la red institucional.</li>
+    </ul>
+    <div class="nota">Esta estructura es la que sostiene los casos de uso (CU-01 a CU-06) y los 13 acontecimientos que el modelo esencial desarrolla en la 2ª entrega.</div>
+
+    <h1>Referencias</h1>
+    <ul>
+        <li>IEEE (1998). <i>IEEE Std 830-1998 — Recommended Practice for Software Requirements Specifications</i>.</li>
+        <li>AGESIC. <i>Guía para la elaboración de requerimientos y buenas prácticas de software — Estado uruguayo</i>.</li>
+        <li>Sommerville, I. (2011). <i>Software Engineering</i>, 9ª edición. Pearson.</li>
+        <li>Letra del proyecto, ITI · UTU CETP (2026). «Entregas de documentación e insumos del proyecto».</li>
+        <li>UTU. <i>Formato de carátula oficial — proyecto de egreso</i>, documento interno.</li>
+    </ul>
+
+    <footer>PixelMind · SGRSI — Primera Entrega · Ingeniería de Software · ITI – CETP 2026 · 22 de junio de 2026</footer>
+</div>
+
+</body>
+</html>

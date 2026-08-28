@@ -13,6 +13,9 @@
 
 class Validador
 {
+    /** Contraseñas seguras: mínimo 8 caracteres, al menos una mayúscula y un carácter especial (no espacio). */
+    public const REGEX_CONTRASENA = '/^(?=.*[A-Z])(?=.*[^\sA-Za-z0-9])\S{8,}$/D';
+
     private array $errores = [];
 
     public function errores(): array { return $this->errores; }
@@ -41,6 +44,14 @@ class Validador
     public function largoMin(string $campo, $valor, int $min, string $mensaje): void
     {
         if ($valor !== null && $valor !== '' && mb_strlen((string)$valor) < $min) {
+            $this->agregarError($campo, $mensaje);
+        }
+    }
+
+    /** Contraseña segura: mínimo 8 caracteres, mayúscula y carácter especial. */
+    public function contrasenaSegura(string $campo, $valor, string $mensaje): void
+    {
+        if ($valor === null || preg_match(self::REGEX_CONTRASENA, (string)$valor) !== 1) {
             $this->agregarError($campo, $mensaje);
         }
     }

@@ -96,7 +96,7 @@ class UsuarioServicio
             $v->agregarError('rol', 'Debe seleccionar un rol válido.');
         }
         if (!empty($datos['password'])) {
-            $v->largoMin('password', $datos['password'], 8, 'La nueva contraseña debe tener al menos 8 caracteres.');
+            $v->contrasenaSegura('password', $datos['password'], 'La nueva contraseña debe tener mínimo 8 caracteres, al menos una mayúscula y un carácter especial.');
         }
         if ($v->hayErrores()) {
             throw new ValidacionException($v->errores());
@@ -146,7 +146,7 @@ class UsuarioServicio
         $v->largoMax('apellido',  $datos['apellido'] ?? '', 80, 'Máximo 80 caracteres.');
         $v->requerido('email',    $datos['email']    ?? '', 'El email es obligatorio.');
         $v->email('email',        $datos['email']    ?? '', 'Formato de email inválido.');
-        $v->largoMin('password',  $datos['password'] ?? '', 8,  'La contraseña debe tener al menos 8 caracteres.');
+        $v->contrasenaSegura('password', $datos['password'] ?? '', 'La contraseña debe tener mínimo 8 caracteres, al menos una mayúscula y un carácter especial.');
 
         if (($datos['password'] ?? '') !== ($datos['password_confirm'] ?? '')) {
             $v->agregarError('password_confirm', 'Las contraseñas no coinciden.');

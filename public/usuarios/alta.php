@@ -77,9 +77,9 @@ require __DIR__ . '/../includes/header.php';
                 <label for="password" class="form-label"><?= e(t('password')) ?> *</label>
                 <input type="password" id="password" name="password"
                        class="form-control <?= $e('password') ? 'is-invalid' : '' ?>"
-                       required minlength="8" data-strength>
+                       required minlength="8" data-strength data-password-segura>
                 <div class="progress d-none mt-1" style="height:4px"><div class="progress-bar"></div></div>
-                <div class="invalid-feedback"><?= e($e('password') ?: 'Mínimo 8 caracteres.') ?></div>
+                <div class="invalid-feedback"><?= e($e('password') ?: 'Mínimo 8 caracteres, una mayúscula y un carácter especial.') ?></div>
             </div>
 
             <div class="col-md-6">

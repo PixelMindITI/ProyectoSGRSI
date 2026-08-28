@@ -36,8 +36,8 @@ const validaciones = {
 
     largoMin: (valor, min) => valor.trim().length >= parseInt(min, 10),
 
-    // Contraseña: mínimo 8, al menos una letra y un número
-    passwordSegura: (valor) => /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(valor),
+    // Contraseña: mínimo 8, al menos una mayúscula y un carácter especial
+    passwordSegura: (valor) => /^(?=.*[A-Z])(?=.*[^\sA-Za-z0-9])\S{8,}$/.test(valor),
 
     coinciden: (a, b) => a === b,
 
@@ -64,6 +64,9 @@ function validarCampoEnVivo(campo) {
         }
         if (ok && campo.hasAttribute('data-minlength')) {
             ok = validaciones.largoMin(valor, campo.dataset.minlength);
+        }
+        if (ok && campo.hasAttribute('data-password-segura')) {
+            ok = validaciones.passwordSegura(valor);
         }
         if (ok && campo.hasAttribute('data-match')) {
             const par = document.querySelector(campo.dataset.match);

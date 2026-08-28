@@ -137,6 +137,24 @@ class UsuarioServicio
         return $u;
     }
 
+    /**
+     * Borrado lógico de un usuario (activo = 0): conserva el historial.
+     * No se permite eliminar la propia cuenta ni desactivar al último
+     * administrador activo del sistema.
+     */
+    public function eliminar(int $id): void
+    {
+        if ($id === (int)Sesion::id()) {
+            throw new AccesoDenegadoException('No puede eliminar su propia cuenta.');
+        }
+        $u = $this->obtenerPorId($id);
+        if ($u->activo() && $u->rolNombre() === 'administrador'
+            && $this->repositorio->contarAdministradoresActivos() <= 1) {
+            throw new AccesoDenegadoException('No puede desactivar al último administrador activo del sistema.');
+        }
+        $this->repositorio->desactivar($id);
+    }
+
     private function validarRegistro(array $datos): array
     {
         $v = new Validador();

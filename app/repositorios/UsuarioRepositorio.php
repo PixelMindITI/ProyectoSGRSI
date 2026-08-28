@@ -82,6 +82,21 @@ class UsuarioRepositorio extends RepositorioBase
         $this->modificar('UPDATE usuarios SET ultimo_acceso = NOW() WHERE id=?', 'i', [$id]);
     }
 
+    /** Borrado lógico: desactiva la cuenta sin eliminar su historial (trazabilidad). */
+    public function desactivar(int $id): void
+    {
+        $this->modificar('UPDATE usuarios SET activo = 0 WHERE id = ?', 'i', [$id]);
+    }
+
+    /** Cuántos administradores activos hay (protección: nunca dejar el sistema sin admin). */
+    public function contarAdministradoresActivos(): int
+    {
+        return (int)$this->escalar(
+            "SELECT COUNT(*) FROM usuarios u JOIN roles r ON r.id = u.rol_id
+             WHERE r.nombre = 'administrador' AND u.activo = 1"
+        );
+    }
+
     public function contarPorRol(): array
     {
         return $this->filas(

@@ -62,6 +62,14 @@ require __DIR__ . '/../includes/header.php';
                     <td class="text-end text-nowrap">
                         <a class="btn btn-sm btn-outline-secondary"
                            href="editar.php?id=<?= $u->id() ?>"><?= e(t('editar')) ?></a>
+                        <?php if ($u->id() !== (int)Sesion::id() && $u->activo()): ?>
+                            <form method="post" action="eliminar.php" class="d-inline"
+                                  data-confirmar="¿Desactivar el usuario <?= e($u->nombreCompleto()) ?>? Podrá reactivarlo desde 'Editar'.">
+                                <?= Csrf::campo() ?>
+                                <input type="hidden" name="id" value="<?= $u->id() ?>">
+                                <button type="submit" class="btn btn-sm btn-outline-danger"><?= e('Eliminar') ?></button>
+                            </form>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

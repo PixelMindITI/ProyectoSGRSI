@@ -26,7 +26,9 @@ class TicketServicio
 
         $v->requerido('titulo', $datos['titulo'] ?? '', 'El título es obligatorio.');
         $v->largoMax('titulo', $datos['titulo'] ?? '', 150, 'Máximo 150 caracteres.');
+        $v->textoSensible('titulo', $datos['titulo'] ?? '', 'El título parece texto sin sentido; escriba un resumen con palabras reales.');
         $v->requerido('descripcion', $datos['descripcion'] ?? '', 'La descripción es obligatoria.');
+        $v->textoSensible('descripcion', $datos['descripcion'] ?? '', 'La descripción parece texto sin sentido; describa el problema con claridad.');
         $v->enteroPositivo('prioridad', $datos['prioridad'] ?? 0, 'Debe seleccionar la prioridad.');
         if (!empty($datos['prioridad']) && !in_array((int)$datos['prioridad'], $prioridades, true)) {
             $v->agregarError('prioridad', 'Prioridad inválida.');
@@ -66,6 +68,7 @@ class TicketServicio
         $nota = Validador::texto($datos['nota'] ?? '');
 
         $v = new Validador();
+        $v->textoSensible('nota', $nota, 'La nota parece texto sin sentido; escriba la intervención con claridad.');
         if (!isset($estados[$estadoId])) {
             $v->agregarError('estado', 'Estado inválido.');
         }

@@ -39,6 +39,26 @@ const validaciones = {
     // Contraseña: mínimo 8, al menos una mayúscula y un carácter especial
     passwordSegura: (valor) => /^(?=.*[A-Z])(?=.*[^\sA-Za-z0-9])\S{8,}$/.test(valor),
 
+    // Texto con sentido: evita letras al azar del teclado (ej. "ajksbhhdjdbahjdbh")
+    textoSensible: (valor) => {
+        const limpio = valor.trim().toLowerCase().replace(/[^a-záéíóúüñ]/g, '');
+        if (limpio.length < 6) return true; // siglas/códigos se permiten
+        const vocales = (limpio.match(/[aeiouáéíóúü]/g) || []).length;
+        if (vocales / limpio.length < 0.20) return false;
+        const filas = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];
+        const mapa = {};
+        filas.forEach((fila, f) => [...fila].forEach((chr, c) => { mapa[chr] = [f, c]; }));
+        const chars = [...limpio];
+        let total = 0, ady = 0;
+        for (let i = 0; i < chars.length - 1; i++) {
+            const a = mapa[chars[i]], b = mapa[chars[i + 1]];
+            if (!a || !b) continue;
+            total++;
+            if (a[0] === b[0] && Math.abs(a[1] - b[1]) <= 1) ady++;
+        }
+        return total < 5 || ady / total < 0.7;
+    },
+
     coinciden: (a, b) => a === b,
 
     fechaNoPasada: (valor) => {
@@ -67,6 +87,9 @@ function validarCampoEnVivo(campo) {
         }
         if (ok && campo.hasAttribute('data-password-segura')) {
             ok = validaciones.passwordSegura(valor);
+        }
+        if (ok && campo.hasAttribute('data-texto-sensible')) {
+            ok = validaciones.textoSensible(valor);
         }
         if (ok && campo.hasAttribute('data-match')) {
             const par = document.querySelector(campo.dataset.match);

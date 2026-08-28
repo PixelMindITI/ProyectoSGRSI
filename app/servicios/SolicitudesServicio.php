@@ -25,7 +25,9 @@ class SolicitudesServicio
         $v = new Validador();
         $v->requerido('titulo', $datos['titulo'] ?? '', 'El título es obligatorio.');
         $v->largoMax('titulo', $datos['titulo'] ?? '', 150, 'Máximo 150 caracteres.');
+        $v->textoSensible('titulo', $datos['titulo'] ?? '', 'El título parece texto sin sentido; escriba un resumen con palabras reales.');
         $v->requerido('descripcion', $datos['descripcion'] ?? '', 'La descripción es obligatoria.');
+        $v->textoSensible('descripcion', $datos['descripcion'] ?? '', 'La descripción parece texto sin sentido; describa lo que necesita con claridad.');
         $v->enteroPositivo('tipo', $datos['tipo'] ?? 0, 'Debe seleccionar el tipo de solicitud.');
         if (!empty($datos['tipo']) && !in_array((int)$datos['tipo'], $tipos, true)) {
             $v->agregarError('tipo', 'Tipo de solicitud inválido.');
@@ -65,6 +67,7 @@ class SolicitudesServicio
         $respuesta = Validador::texto($datos['respuesta'] ?? '');
 
         $v = new Validador();
+        $v->textoSensible('respuesta', $respuesta, 'La respuesta parece texto sin sentido; escriba la respuesta con claridad.');
         if (!isset($estados[$estadoId]) || $estadoId === 1) {
             $v->agregarError('estado', 'Seleccione un estado válido de atención.');
         }

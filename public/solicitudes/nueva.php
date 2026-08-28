@@ -44,7 +44,7 @@ require __DIR__ . '/../includes/header.php';
                 <label for="titulo" class="form-label"><?= e(t('titulo')) ?> *</label>
                 <input type="text" id="titulo" name="titulo"
                        class="form-control <?= $e('titulo') ? 'is-invalid' : '' ?>"
-                       value="<?= e($valores['titulo']) ?>" required maxlength="150">
+                       value="<?= e($valores['titulo']) ?>" required maxlength="150" data-texto-sensible>
                 <div class="invalid-feedback"><?= e($e('titulo') ?: 'Campo obligatorio.') ?></div>
             </div>
 
@@ -81,7 +81,7 @@ require __DIR__ . '/../includes/header.php';
                 <label for="descripcion" class="form-label"><?= e(t('descripcion')) ?> *</label>
                 <textarea id="descripcion" name="descripcion" rows="5" required maxlength="2000"
                           class="form-control <?= $e('descripcion') ? 'is-invalid' : '' ?>"
-                          data-contador-caracteres><?= e($valores['descripcion']) ?></textarea>
+                          data-contador-caracteres data-texto-sensible><?= e($valores['descripcion']) ?></textarea>
                 <small class="text-secondary"><span data-salida-contador>0</span>/2000</small>
                 <div class="invalid-feedback"><?= e($e('descripcion') ?: 'Campo obligatorio.') ?></div>
             </div>

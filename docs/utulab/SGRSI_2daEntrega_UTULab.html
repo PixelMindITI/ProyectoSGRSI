@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UTULab - Segunda Entrega | SGRSI - PixelMind</title>
+    <style>
+        @page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11pt; line-height: 1.6; color: #1d1d1d; }
+        .page { width: 100%; max-width: 210mm; margin: 0 auto; page-break-after: always; }
+        .page:last-child { page-break-after: auto; }
+        .cover { text-align: center; padding-top: 60mm; }
+        .cover .logo { width: 80px; height: 80px; background: #1a365d; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px; }
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        th { background: #1a365d; color: white; padding: 8px; text-align: left; }
+        td { padding: 7px 8px; border-bottom: 1px solid #ddd; }
+        tr:nth-child(even) td { background: #f8f9fa; }
+        h2 { color: #1a365d; border-bottom: 2px solid #1a365d; padding-bottom: 4px; margin: 18px 0 10px; font-size: 13pt; }
+        h3 { color: #2d4a7a; margin: 12px 0 6px; font-size: 11pt; }
+        p { margin-bottom: 8px; text-align: justify; }
+        ul, ol { margin: 8px 0 8px 20px; }
+        li { margin-bottom: 4px; }
+        .section { margin-bottom: 14px; }
+        .placeholder { background: #fff3cd; padding: 8px 12px; border-left: 4px solid #ffc107; margin: 10px 0; font-style: italic; font-size: 10pt; }
+    </style>
+</head>
+<body>
+
+<!-- PORTADA - FORMATO UTULAB -->
+<div class="page cover">
+    <div style="text-align: center; margin-bottom: 20px;">
+        <div class="logo">PM</div>
+        <div style="font-size: 14pt; color: #1a365d; font-weight: bold; margin-top: 10px;">UTULab</div>
+        <div style="font-size: 18pt; color: #333; margin-top: 5px;">PixelMind</div>
+    </div>
+    <table style="width: 90%; margin: 20px auto; text-align: left;">
+        <tr>
+            <th style="width: 25%;">Rol</th>
+            <th style="width: 25%;">Apellido</th>
+            <th style="width: 20%;">Nombre</th>
+            <th style="width: 20%;">Documento identidad</th>
+            <th style="width: 30%;">Email</th>
+        </tr>
+        <tr>
+            <td>Coordinador</td>
+            <td>Silvera</td>
+            <td>Bruno</td>
+            <td>5.736.659-4</td>
+            <td>bsilvera2008@gmail.com</td>
+        </tr>
+        <tr>
+            <td>Sub-Coordinador</td>
+            <td>Ramirez</td>
+            <td>Ramiro</td>
+            <td>5.791.624-0</td>
+            <td>ramironicolas483@gmail.com</td>
+        </tr>
+        <tr>
+            <td>Integrante 1</td>
+            <td>Figueroa</td>
+            <td>Ivo</td>
+            <td>5.711.315-1</td>
+            <td>ivofigueroa2169@gmail.com</td>
+        </tr>
+    </table>
+    <div style="text-align: center; margin-top: 30px;">
+        <div style="font-size: 11pt; color: #555;">Docente: Valles, Elina</div>
+        <div style="font-size: 16pt; color: #1a365d; font-weight: bold; margin-top: 20px;">SEGUNDA ENTREGA</div>
+        <div style="font-size: 11pt; color: #777; margin-top: 10px;">Fecha de entrega: 24 ago 2026</div>
+    </div>
+</div>
+
+<!-- CONTENIDO SEGUNDA ENTREGA -->
+<div class="page">
+    <h2>2.1 Prototipo funcional (baja fidelidad)</h2>
+    <div class="section">
+        <p>A partir del boceto inicial, el equipo desarrolló una versión digital de baja fidelidad del sistema SGRSI, centrada en la experiencia del usuario solicitante y del usuario técnico. El prototipo incluye las pantallas de inicio de sesión, creación y listado de tickets de incidencia, solicitud de servicio, y bandeja de tickets del técnico con cambio de estado (Pendiente, En Proceso, Resuelto).</p>
+        <div class="placeholder">[Adjuntar el enlace o las capturas del prototipo desarrollado en Figma, Miro u otra herramienta.]</div>
+    </div>
+
+    <h2>2.2 Validación con usuarios</h2>
+    <div class="section">
+        <p>El prototipo fue presentado a usuarios reales vinculados a la problemática (personal de la Coordinación de Informática y un grupo de docentes del instituto), registrando sus impresiones:</p>
+        <ul>
+            <li><strong>Opiniones:</strong> se valoró positivamente contar con un único canal para reportar incidencias y consultar su estado, en lugar de tener que recurrir a distintos medios informales.</li>
+            <li><strong>Dificultades detectadas:</strong> los usuarios solicitantes manifestaron que el formulario de creación de tickets resultaba algo extenso, y sugirieron reducir los campos obligatorios a los estrictamente necesarios.</li>
+            <li><strong>Sugerencias de mejora:</strong> se propuso incorporar un campo de prioridad visible para el solicitante y notificaciones simples sobre el cambio de estado de sus solicitudes.</li>
+        </ul>
+    </div>
+
+    <h2>2.3 Análisis del feedback</h2>
+    <div class="section">
+        <p>Del proceso de validación se desprende que la simplicidad del flujo de carga es un factor determinante para la adopción del sistema por parte de los usuarios solicitantes, y que la transparencia sobre el estado de cada solicitud es uno de los aspectos más valorados. Asimismo, se confirmó que la separación de roles (solicitante, técnico, administrador) resulta clara e intuitiva para los usuarios consultados.</p>
+    </div>
+
+    <h2>2.4 Ajustes en la propuesta de solución</h2>
+    <div class="section">
+        <p>En base a lo observado, se realizaron los siguientes ajustes:</p>
+        <ul>
+            <li>Se redujo el formulario de creación de tickets a los campos esenciales (título, categoría, descripción y prioridad), dejando el resto de los datos de contexto para ser completados automáticamente por el sistema.</li>
+            <li>Se incorporó un indicador visual de prioridad y de estado, visible tanto para el solicitante como para el técnico.</li>
+            <li>Se ajustó el panel del técnico para priorizar la visualización de tickets según antigüedad y prioridad, facilitando la organización de las tareas diarias.</li>
+        </ul>
+        <p>Estas modificaciones se justifican en la necesidad de reducir la fricción de uso del sistema por parte de los solicitantes, principal factor señalado durante la validación como barrera para la adopción de la herramienta.</p>
+    </div>
+</div>
+
+<div class="page">
+    <h2>2.5 Revisión del problema inicial</h2>
+    <div class="section">
+        <p>La instancia de validación permitió profundizar la comprensión del problema: no solo existe una necesidad de centralizar la información, sino también de que el sistema sea percibido como más simple y rápido que los canales informales que reemplaza. De no ser así, existe el riesgo de que los usuarios continúen utilizando vías alternativas de comunicación, lo que debilitaría la trazabilidad que el sistema busca garantizar.</p>
+    </div>
+
+    <h2>2.6 Registro del proceso de trabajo</h2>
+    <div class="section">
+        <p>El equipo continuó documentando su trabajo mediante actas de reunión, en las que se registraron las decisiones sobre los ajustes realizados al prototipo, así como la organización de tareas para esta segunda etapa a través del tablero Kanban compartido.</p>
+        <div class="placeholder">[Adjuntar las actas correspondientes a este período, con evidencias de colaboración: capturas del tablero, registro de commits, etc.]</div>
+    </div>
+
+    <h2>2.7 Segunda reflexión del equipo</h2>
+    <div class="section">
+        <p>El equipo destaca que someter el prototipo a usuarios reales resultó sumamente valioso, ya que permitió detectar oportunidades de mejora que no eran evidentes desde la perspectiva interna del grupo de proyecto. Se reafirma la importancia de validar tempranamente las decisiones de diseño antes de avanzar hacia el desarrollo del producto final.</p>
+    </div>
+
+    <h2>2.8 Merchandising y comunicación inicial del producto</h2>
+    <div class="section">
+        <h3>Identidad visual</h3>
+        <p>Desarrollo de elementos visuales asociados al proyecto: se definió una paleta de colores institucional, un logotipo representativo de la marca PixelMind y un conjunto de mockups y recursos gráficos coherentes con la identidad visual definida.</p>
+        <div class="placeholder">[Adjuntar tarjetas, mockups y recursos gráficos del proyecto.]</div>
+        
+        <h3>Estrategia de difusión</h3>
+        <ul>
+            <li><strong>Mensaje del producto:</strong> "SGRSI centraliza y agiliza la gestión de recursos y soporte informático del instituto."</li>
+            <li><strong>Público objetivo:</strong> autoridades, docentes, funcionarios administrativos y estudiantes del instituto.</li>
+            <li><strong>Simulación de difusión:</strong> se elaboraron publicaciones de ejemplo para redes sociales (Instagram y TikTok) presentando el producto y su propuesta de valor, orientadas a comunicar el lanzamiento interno de la herramienta dentro de la institución.</li>
+        </ul>
+        <div class="placeholder">[Adjuntar las publicaciones de ejemplo creadas.]</div>
+    </div>
+
+    <h2>2.9 Evaluación del funcionamiento grupal</h2>
+    <div class="section">
+        <p>En comparación con la primera entrega, el equipo identifica una mejora en la distribución de tareas y en la fluidez de la comunicación interna, favorecida por la experiencia adquirida en el uso del tablero Kanban. Como área de mejora para la siguiente etapa, se propone anticipar con mayor margen las instancias de validación con usuarios, de modo de contar con más tiempo para incorporar ajustes antes de cada fecha de entrega.</p>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <div style="margin-top: 30px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 9pt; color: #777; text-align: center;">
+        <p>Sistema de Gestión de Recursos y Soporte de Informática (SGRSI) — PixelMind<br>
+        Proyecto de Egreso BT Informática 2026 · ITI/CETP · Gestión de Proyectos — UTULab</p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UTULab - Primera Entrega | SGRSI - PixelMind</title>
+    <style>
+        @page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 11pt; line-height: 1.6; color: #1d1d1d; }
+        .page { width: 100%; max-width: 210mm; margin: 0 auto; page-break-after: always; }
+        .page:last-child { page-break-after: auto; }
+        .cover { text-align: center; padding-top: 60mm; }
+        .cover .logo { width: 80px; height: 80px; background: #1a365d; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px; }
+        .cover h1 { font-size: 22pt; color: #1a365d; margin-bottom: 8px; }
+        .cover h2 { font-size: 14pt; color: #555; font-weight: normal; margin-bottom: 30px; }
+        .cover .meta { font-size: 10pt; color: #777; }
+        .cover .meta div { margin-bottom: 4px; }
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+        th { background: #1a365d; color: white; padding: 8px; text-align: left; }
+        td { padding: 7px 8px; border-bottom: 1px solid #ddd; }
+        tr:nth-child(even) td { background: #f8f9fa; }
+        h2 { color: #1a365d; border-bottom: 2px solid #1a365d; padding-bottom: 4px; margin: 18px 0 10px; font-size: 13pt; }
+        h3 { color: #2d4a7a; margin: 12px 0 6px; font-size: 11pt; }
+        p { margin-bottom: 8px; text-align: justify; }
+        ul, ol { margin: 8px 0 8px 20px; }
+        li { margin-bottom: 4px; }
+        .section { margin-bottom: 14px; }
+        .placeholder { background: #fff3cd; padding: 8px 12px; border-left: 4px solid #ffc107; margin: 10px 0; font-style: italic; font-size: 10pt; }
+    </style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<div class="page cover">
+    <div class="logo">PM</div>
+    <h1>Sistema de Gestión de Recursos y Soporte de Informática (SGRSI)</h1>
+    <h2>Proyecto de Egreso BT Informática 2026 — ITI/CETP<br>Unidad curricular: Gestión de Proyectos — UTULab</h2>
+    <div class="meta">
+        <div>Entrega: <b>Primera</b></div>
+        <div>Docente: Valles, Elina</div>
+        <div style="margin-top: 16px;">
+            <table style="width: 80%; margin: 0 auto; text-align: left;">
+                <tr><th>Integrante</th><th>C.I.</th></tr>
+                <tr><td>Silvera, Bruno — Coordinador</td><td>5.736.659-4</td></tr>
+                <tr><td>Ramirez, Ramiro — Sub-Coordinador</td><td>5.791.624-0</td></tr>
+                <tr><td>Figueroa, Ivo — Integrante</td><td>5.711.315-1</td></tr>
+            </table>
+        </div>
+        <div style="margin-top: 16px;">Fecha de culminación del trabajo: 22/06/2026</div>
+    </div>
+</div>
+
+<!-- 1. NOTA DE CONFORMACIÓN DEL GRUPO -->
+<div class="page">
+    <h2>1.1 Nota de conformación del grupo</h2>
+    <div class="section">
+        <p>La nota de conformación del grupo, con la nómina completa de integrantes, cédulas de identidad, datos de contacto y designación del coordinador y sub-coordinador, se adjunta según el formato oficial disponible en <em>iti.utu.edu.uy/material-de-estudio/</em>. Dicho documento fue presentado ante el Equipo de Dirección, la Coordinación de Informática, Adscripción y los docentes del proyecto dentro del plazo establecido (13 al 20 de abril de 2026).</p>
+        <div class="placeholder">[Adjuntar la nota de conformación firmada por todos los integrantes.]</div>
+    </div>
+
+    <!-- 1. PLANTEAMIENTO DEL PROBLEMA -->
+    <h2>1.2 Planteo del problema a abordar</h2>
+    <div class="section">
+        <p>La Coordinación de Informática del instituto gestiona actualmente el inventario tecnológico, los préstamos de equipos, las incidencias técnicas y las solicitudes de servicio mediante planillas de cálculo, registros en papel y comunicación informal (correo electrónico, mensajería y consultas presenciales). Esta forma de trabajo genera pérdida de trazabilidad sobre los equipos, demoras en la atención de incidencias, dificultad para auditar préstamos y devoluciones, y ausencia de información consolidada para la toma de decisiones.</p>
+        <p>El problema a resolver consiste en la falta de una herramienta única que centralice estos procesos, garantice la trazabilidad de los recursos y permita medir el desempeño del soporte técnico brindado por la coordinación.</p>
+    </div>
+
+    <!-- 2. CONTEXTO -->
+    <h2>1.3 Descripción del contexto y de la necesidad que se busca resolver</h2>
+    <div class="section">
+        <p>El instituto cuenta con múltiples laboratorios, equipos de uso individual y compartido, y un volumen creciente de solicitudes de soporte por parte de docentes y estudiantes. La ausencia de un sistema informático de gestión provoca que la información se encuentre dispersa entre distintos archivos y personas, lo que dificulta responder con rapidez ante pérdidas, daños o fallas recurrentes de equipos, y no permite anticipar necesidades de mantenimiento ni de reposición.</p>
+        <p>Se identifica entonces la necesidad de contar con una plataforma web de uso interno (intranet institucional) que digitalice y centralice la gestión de inventario, préstamos, incidencias y solicitudes de servicio, sustituyendo los registros manuales por una herramienta única, trazable y accesible desde cualquier equipo conectado a la red del instituto.</p>
+    </div>
+
+    <!-- 3. IDENTIFICACIÓN DE USUARIOS -->
+    <h2>1.4 Identificación de usuarios</h2>
+    <div class="section">
+        <ul>
+            <li><strong>Usuario solicitante:</strong> docentes, funcionarios administrativos y estudiantes que requieren asistencia técnica o el uso de recursos informáticos.</li>
+            <li><strong>Usuario técnico / soporte:</strong> personal encargado de brindar soporte informático, atender tickets, realizar diagnósticos y gestionar préstamos y devoluciones.</li>
+            <li><strong>Usuario administrador / coordinador:</strong> responsable de la Coordinación de Informática, con acceso completo al sistema, a la gestión de usuarios y al panel de métricas y reportes.</li>
+        </ul>
+    </div>
+
+    <!-- 4. ACTORES -->
+    <h2>1.5 Descripción de los actores involucrados y su interacción actual</h2>
+    <div class="section">
+        <p>Actualmente, el usuario solicitante reporta una incidencia o necesidad de forma presencial, telefónica o por correo electrónico, sin un canal formal único. El usuario técnico recibe estos pedidos de manera dispersa, prioriza según su propio criterio y registra (cuando lo hace) el diagnóstico en planillas personales, lo que dificulta el seguimiento por parte de terceros. El usuario administrador/coordinador debe reunir manualmente información de distintas fuentes para conocer el estado general del parque tecnológico, lo que le insume tiempo y reduce la calidad de las decisiones de gestión.</p>
+    </div>
+
+    <!-- 5. FODA -->
+    <h2>1.6 Aplicación de una herramienta de análisis (FODA)</h2>
+    <div class="section">
+        <p>Se aplicó un análisis F.O.D.A. para comprender la situación actual del equipo de proyecto frente al problema planteado:</p>
+        <ul>
+            <li><strong>Fortalezas:</strong> conocimientos técnicos adquiridos en el curso en desarrollo web, bases de datos y administración de sistemas; buena comunicación interna del equipo; acceso directo a los actores reales del problema (la propia Coordinación de Informática del instituto).</li>
+            <li><strong>Oportunidades:</strong> necesidad real y vigente de la institución; posibilidad de aplicar el sistema en un entorno de uso concreto; disponibilidad de tecnologías gratuitas y de código abierto para su desarrollo.</li>
+            <li><strong>Debilidades:</strong> tiempo acotado por el cronograma de entregas; experiencia desigual entre integrantes en algunas tecnologías; primera vez del equipo trabajando en un proyecto de esta envergadura.</li>
+            <li><strong>Amenazas:</strong> cambios en los requerimientos durante el desarrollo; superposición de entregas con otras unidades curriculares; posibles dificultades de coordinación de horarios entre los integrantes.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="page">
+    <!-- 6. PROPUESTA -->
+    <h2>1.7 Primera propuesta de solución</h2>
+    <div class="section">
+        <p>Se propone el desarrollo del <strong>Sistema de Gestión de Recursos y Soporte de Informática (SGRSI)</strong>, una plataforma web tipo intranet que permitirá registrar y controlar el inventario tecnológico, gestionar préstamos y devoluciones de equipos, administrar incidencias técnicas mediante un módulo de mesa de ayuda basado en tickets, canalizar solicitudes de servicio (preparación de laboratorios, instalación de software, configuraciones) y generar información de apoyo a la toma de decisiones mediante un panel de métricas y reportes. El sistema no reemplaza la labor humana del soporte técnico, sino que la ordena, la hace trazable y la mide.</p>
+    </div>
+
+    <!-- 7. REPRESENTACIÓN INICIAL -->
+    <h2>1.8 Representación inicial del sistema</h2>
+    <div class="section">
+        <p>Boceto general del flujo de la aplicación:</p>
+        <ul>
+            <li><strong>Pantalla de inicio de sesión</strong>, con acceso diferenciado por rol (solicitante, técnico, administrador).</li>
+            <li><strong>Panel del solicitante:</strong> creación de tickets de incidencia, solicitud de servicio y consulta del estado de sus pedidos.</li>
+            <li><strong>Panel del técnico:</strong> bandeja de tickets asignados, registro de diagnóstico y notas de resolución, gestión de préstamos y devoluciones de equipos.</li>
+            <li><strong>Panel del administrador/coordinador:</strong> ABM de inventario, gestión de usuarios del sistema, calendario de tareas preventivas/reactivas y dashboard de métricas (equipos más fallados, tiempos promedio de resolución, solicitudes por período, uso de laboratorios).</li>
+        </ul>
+        <div class="placeholder">[Adjuntar el boceto o maqueta digital correspondiente.]</div>
+    </div>
+
+    <!-- 8. PoC -->
+    <h2>1.9 Pruebas de concepto (PoC)</h2>
+    <div class="section">
+        <p>El equipo realizó una prueba de concepto orientada a validar la viabilidad técnica del proyecto antes de avanzar en el desarrollo formal.</p>
+    </div>
+
+    <!-- 9. HERRAMIENTAS -->
+    <h2>1.10 Exploración inicial de herramientas o tecnologías</h2>
+    <div class="section">
+        <ul>
+            <li><strong>Qué se intentó hacer:</strong> se realizó una maqueta navegable en baja fidelidad del módulo de mesa de ayuda (creación y listado de tickets) y una prueba de conexión básica entre una página HTML y una base de datos MySQL mediante PHP, con el fin de validar la arquitectura general propuesta (frontend HTML/CSS/JavaScript, backend PHP, persistencia en MySQL).</li>
+            <li><strong>Dificultades encontradas:</strong> desconocimiento inicial de algunos integrantes sobre la configuración del entorno de desarrollo local (servidor, PHP y base de datos), y dudas sobre la mejor forma de estructurar el modelo de datos para representar equipos, préstamos y tickets de forma normalizada.</li>
+            <li><strong>Cómo se resolvieron:</strong> se instaló un entorno de desarrollo local homogéneo para todo el equipo, se realizaron sesiones internas de capacitación entre integrantes con más experiencia y los que tenían menos, y se bocetó un primer diagrama entidad-relación preliminar que fue revisado en conjunto antes de continuar.</li>
+        </ul>
+    </div>
+
+    <!-- 10. ORGANIZACIÓN DEL EQUIPO -->
+    <h2>1.11 Organización del equipo</h2>
+    <div class="section">
+        <p>El equipo definió roles de coordinador y sub-coordinador conforme al marco reglamentario del proyecto, estableció una modalidad de trabajo colaborativo mediante reuniones semanales (presenciales y virtuales) y adoptó un tablero Kanban compartido para la gestión de tareas, en coordinación con la Tutoría de Proyecto de UTULab.</p>
+    </div>
+
+    <!-- 11. REGLAMENTO INTERNO -->
+    <h2>1.12 Reglamento interno del equipo</h2>
+    <div class="section">
+        <h3>Acuerdos de trabajo</h3>
+        <p>Cumplimiento de plazos internos previos a cada entrega, revisión cruzada de tareas antes de darlas por finalizadas, y compromiso de avisar con anticipación ante imposibilidad de cumplir una tarea asignada.</p>
+        <h3>Responsabilidades</h3>
+        <p>Cada integrante es responsable de las tareas que le fueron asignadas en el tablero Kanban; el coordinador centraliza las comunicaciones formales con la institución y el sub-coordinador lo suple ante ausencias.</p>
+        <h3>Formas de comunicación</h3>
+        <p>Canal de mensajería instantánea para la comunicación diaria, correo electrónico para comunicaciones formales con docentes y coordinación, y reuniones periódicas para la toma de decisiones relevantes del proyecto.</p>
+    </div>
+</div>
+
+<div class="page">
+    <!-- 12. ACTAS INICIALES -->
+    <h2>1.13 Actas iniciales</h2>
+    <div class="section">
+        <h3>Reuniones realizadas</h3>
+        <ul>
+            <li>Reunión de conformación del grupo y definición de roles.</li>
+            <li>Reunión de análisis del problema y relevamiento inicial.</li>
+            <li>Reunión de definición de la primera propuesta de solución.</li>
+        </ul>
+        <h3>Decisiones tomadas</h3>
+        <ul>
+            <li>Nombre de la empresa: <strong>PixelMind</strong>.</li>
+            <li>Elección del coordinador (Silvera, Bruno) y sub-coordinador (Ramirez, Ramiro).</li>
+            <li>Selección de la arquitectura tecnológica inicial: HTML/CSS/JavaScript, PHP y MySQL.</li>
+            <li>Definición del alcance para la primera entrega.</li>
+        </ul>
+        <h3>Tareas asignadas</h3>
+        <ul>
+            <li>Relevamiento y análisis del problema.</li>
+            <li>Diseño de la primera propuesta de solución y su representación inicial.</li>
+            <li>Exploración técnica y prueba de concepto.</li>
+            <li>Redacción de la documentación de la entrega.</li>
+        </ul>
+        <div class="placeholder">[Adjuntar las actas completas, con fecha, asistentes y firmas/registro de cada reunión.]</div>
+    </div>
+
+    <!-- 13. REFLEXIÓN INICIAL -->
+    <h2>1.14 Reflexión inicial</h2>
+    <div class="section">
+        <p>El equipo considera que el mayor desafío de esta primera etapa fue traducir un problema real y cotidiano de la institución en una propuesta de solución técnica concreta, sin perder de vista que el sistema debe apoyar —y no reemplazar— el trabajo humano de soporte. La organización temprana de roles y la adopción de un tablero de tareas compartido resultaron claves para ordenar el trabajo del equipo desde el inicio.</p>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <div style="margin-top: 30px; border-top: 1px solid #ccc; padding-top: 10px; font-size: 9pt; color: #777; text-align: center;">
+        <p>Sistema de Gestión de Recursos y Soporte de Informática (SGRSI) — PixelMind<br>
+        Proyecto de Egreso BT Informática 2026 · ITI/CETP · Gestión de Proyectos — UTULab</p>
+    </div>
+</div>
+
+</body>
+</html>
